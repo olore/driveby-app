@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <title>Drive By</title>
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+    <meta charset="utf-8">
+
+    <!-- iPad/iPhone specific css below, add after your main css >
+    <link rel="stylesheet" media="only screen and (max-device-width: 1024px)" href="ipad.css" type="text/css" />    
+    <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="iphone.css" type="text/css" />    
+    -->
+
+    <!-- If your application is targeting iOS BEFORE 4.0 you MUST put json2.js from http://www.JSON.org/json2.js into your www directory and include it here -->
+
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+    <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
+
+
+    <script type="text/javascript" charset="utf-8" src="app/js/phonegap-1.1.0.js"></script>
+    <script type="text/javascript" charset="utf-8" src="app/js/handlebars-1.0.0.beta.4.js"></script>
+    <script type="text/javascript" charset="utf-8" src="app/js/ejs_production.js"></script>
+
+    <script type="text/javascript" charset="utf-8" src="app/js/driveby.js"></script>
+  </head>
+
+  <body> 
+    <div data-role="page" id="index">
+
+      <div data-role="header" data-position="fixed">
+        <h1>Drive By</h1>
+      </div><!-- /header -->
+
+      <div data-role="content">
+
+        <div class="content-primary">
+          <form id="new_post" action="/posts" method="post" data-ajax="false">
+
+            <label for="state">State:</label>
+            <input type="text" name="state" id="state" value=""  />
+      
+            <label for="license_plate">License Plate:</label>
+            <input type="text" name="license_plate" id="license_plate" value=""  />
+
+            <label for="comment">Comment:</label>
+            <textarea name="comment" id="comment"></textarea>
+
+            <input type="hidden" name="creator" value="testing_123" />
+            <input type="submit" value="Submit"/>
+          </form>
+        </div>
+        
+      </div><!-- /content -->
+
+      <div data-role="footer" data-id="my-footer" data-position="fixed">
+        <h4>Drive Safely!</h4>
+      </div><!-- /footer -->
+
+    </div><!-- /page -->
+  
+  </body>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+
+      $(document).bind("deviceready", function(){
+        //Some day I may need to know that the device is ready (phonegap)
+        //Today is not that day
+      });
+
+      DriveBy.initialize();
+    });
+  </script>
+
+</html>

@@ -9,7 +9,7 @@ class PostsController < ApplicationController
     Post.create!(:creator        => params[:creator], 
                 :license_plate  => params[:license_plate], 
                 :comment        => params[:comment])
-    render :json => 'success'
+    render :json => {'success' => true}
 
   rescue => e
     Rails.logger.error("Error creating post: #{e.message}")

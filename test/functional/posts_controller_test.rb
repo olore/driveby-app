@@ -38,7 +38,8 @@ class PostsControllerTest < ActionController::TestCase
     post 'create', params
     assert_response :success
     assert_match 'application/json', @response.header['Content-Type']
-    assert_match 'success', @response.body
+    resp = JSON.parse(@response.body)
+    assert_match 'true', resp['success'].to_s
   end
 
   test "index returns json content type" do
