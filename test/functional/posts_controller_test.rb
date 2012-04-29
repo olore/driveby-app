@@ -49,7 +49,8 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test "index returns posts in json" do
-    post1, post2 = posts(:one), posts(:two)
+    post1 = Post.create!(:creator => 'bob', :license_plate => '123abc', :comment => 'woo woo')
+    post2 = posts(:two)
     Post.expects(:limit).returns(mock(:order => [post1, post2]))
     get 'index'
     posts = JSON.parse(@response.body)

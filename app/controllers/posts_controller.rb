@@ -1,14 +1,14 @@
 class PostsController < ApplicationController
 
   def index
-    posts = Post.limit(25).order('created_at asc')
+    posts = Post.limit(25).order('created_at desc')
     render :json => posts
   end
 
   def create
-    Post.create!(:creator        => params[:creator], 
-                :license_plate  => params[:license_plate], 
-                :comment        => params[:comment])
+    Post.create!( :creator        => params[:creator], 
+                  :license_plate  => params[:license_plate], 
+                  :comment        => params[:comment])
     render :json => {'success' => true}
 
   rescue => e
