@@ -22,10 +22,9 @@ DriveBy.initialize = function() {
     e.preventDefault();
     $.post( "/posts", f.serialize(), function( data, textStatus, jqXHR ){
       if (data['success'] == true) {
-        $.mobile.changePage("app/saved.html", { reloadPage: true}); //, { transition: "slideup"} );
+        $.mobile.changePage("/app/saved.html", { reloadPage: true}); //, { transition: "slideup"} );
       } else {
-        $.mobile.changePage("app/error.html", { reloadPage: true}); //, { transition: "slideup"} );
-
+        $.mobile.changePage("/app/error.html", { reloadPage: true}); //, { transition: "slideup"} );
       }
       
     });
