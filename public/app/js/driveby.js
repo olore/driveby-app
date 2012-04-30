@@ -14,8 +14,8 @@ DriveBy.initialize = function() {
   });
 
   $( '.item' ).bind("click", function(){
-    $( '.item ').css('background-color', 'F9F9F9');
-    $( '.item ').attr('data-selected', 'false');
+    $( '.item' ).css('background-color', '#F9F9F9');
+    $( '.item' ).attr('data-selected', 'false');
 
     $( this ).css('background-color', 'cyan');
     $( this ).attr('data-selected', 'true');
