@@ -6,6 +6,7 @@ class PostTest < ActiveSupport::TestCase
     assert_difference "Post.count" do
       Post.create!( :license_plate => 'foofoo',
                     :comment => 'you rock',
+                    :state   => 'CT',
                     :creator => 'bobdobalina')
     end
   end

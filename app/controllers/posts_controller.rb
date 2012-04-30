@@ -7,6 +7,7 @@ class PostsController < ApplicationController
 
   def create
     Post.create!( :creator        => params[:creator], 
+                  :state          => params[:state], 
                   :license_plate  => params[:license_plate], 
                   :comment        => params[:comment])
     render :json => {'success' => true}

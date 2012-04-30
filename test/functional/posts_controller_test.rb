@@ -27,14 +27,14 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test "creating a new post calls Post#create" do
-    params = {:creator => 'bob', :license_plate => '123abc', :comment => 'woo woo'}
+    params = {:creator => 'bob', :state => 'NY', :license_plate => '123abc', :comment => 'woo woo'}
     Post.expects(:create!).with(params)
     post 'create', params
     assert_response :success
   end
 
   test "creating a new post responds with json success message" do
-    params = {:creator => 'bob', :license_plate => '123abc', :comment => 'woo woo'}
+    params = {:creator => 'bob', :state => 'NY', :license_plate => '123abc', :comment => 'woo woo'}
     post 'create', params
     assert_response :success
     assert_match 'application/json', @response.header['Content-Type']
@@ -49,7 +49,7 @@ class PostsControllerTest < ActionController::TestCase
   end
 
   test "index returns posts in json" do
-    post1 = Post.create!(:creator => 'bob', :license_plate => '123abc', :comment => 'woo woo')
+    post1 = Post.create!(:creator => 'bob', :state => 'NY', :license_plate => '123abc', :comment => 'woo woo')
     post2 = posts(:two)
     Post.expects(:limit).returns(mock(:order => [post1, post2]))
     get 'index'
