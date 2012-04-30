@@ -16,13 +16,14 @@ DriveBy.initialize = function() {
   $.get( "/posts", function( posts ) {
 
     //TODO: move this out somewhere
-    var post_source = "<li><p class='ui-li-aside'>{{post.created_at}}</p><h3>{{post.license_plate}}</h3><p>{{post.comment}}</p></li>";
+    var post_source = "<li><p title='{{post.created_at}}' class='timeago ui-li-aside'>{{post.created_at}}</p><h3>{{post.license_plate}}</h3><p>{{post.comment}}</p></li>";
     var post_template = Handlebars.compile(post_source);
 
     $.each( posts , function(index, post) {
       $( "#recent-list" ).append(post_template( {'post': post} ));
     });
     $( '#recent-list' ).listview('refresh'); //apply the jqm style
+    $(".timeago").timeago();
 
   });
 
