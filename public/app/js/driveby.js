@@ -1,11 +1,41 @@
 DriveBy = {};
 
-DriveBy.initialize = function() {
+DriveBy.states = [
+ 'AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 
+ 'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 
+ 'ME', 'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 
+ 'NJ', 'NM', 'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 
+ 'SD', 'TN', 'TX', 'UT', 'VA', 'VT', 'WA', 'WI', 'WV', 'WY'];
 
+DriveBy.add_recent_posts_to = function( recent_list ) {
+
+  $.get( "/posts", function( posts ) {
+    //TODO: move this out somewhere
+    var post_source = "<li><p title='{{post.created_at}}' class='timeago ui-li-aside'>{{post.created_at}}</p><h3>{{post.state}} {{post.license_plate}}</h3><p>{{post.comment}}</p></li>";
+    var post_template = Handlebars.compile(post_source);
+
+    $.each( posts , function(index, post) {
+      recent_list.append(post_template( {'post': post} ));
+    });
+    recent_list.listview('refresh'); //apply the jqm style
+    $(".timeago").timeago();
+
+  });
+};
+
+DriveBy.initialize = function() {
+  
+  //add states
+  $.each( DriveBy.states , function(index, state) {
+    $( '.slider' ).append('<div class="item" id ="' + state + '"><a href="#">' + state + '</a></div>');
+  });
+
+  //log any ajax errors
   $(document).ajaxError(function(e, jqxhr, settings, exception) {
     console.log( "ajax error: " + exception);
   });
 
+  //listen for mobileinit (phonegap i think)
   $(document).bind("mobileinit", function(){
     $.mobile.touchOverflowEnabled = true;
     $.mobile.defaultPageTransition = "slide";
@@ -13,34 +43,24 @@ DriveBy.initialize = function() {
     $.mobile.allowCrossDomainPages = true;
   });
 
-  $( '.item' ).bind("click", function(){
-    $( '.item' ).css('background-color', '#F9F9F9');
-    $( '.item' ).attr('data-selected', 'false');
+  //listen to clicking to states
+  var states = $( '.item' )
+  states.bind("click", function(){
+    states.css('background-color', '#F9F9F9');
+    states.attr('data-selected', 'false');
 
     $( this ).css('background-color', 'cyan');
     $( this ).attr('data-selected', 'true');
-    //selected_state = $( this ).attr('id');
   });
 
-  //go get recent posts
-  $.get( "/posts", function( posts ) {
+  DriveBy.add_recent_posts_to( $( '#recent-list' ) );
 
-    //TODO: move this out somewhere
-    var post_source = "<li><p title='{{post.created_at}}' class='timeago ui-li-aside'>{{post.created_at}}</p><h3>{{post.state}} {{post.license_plate}}</h3><p>{{post.comment}}</p></li>";
-    var post_template = Handlebars.compile(post_source);
-
-    $.each( posts , function(index, post) {
-      $( "#recent-list" ).append(post_template( {'post': post} ));
-    });
-    $( '#recent-list' ).listview('refresh'); //apply the jqm style
-    $(".timeago").timeago();
-
-  });
-
+  //listen to pageinit (phonegap i think)
   $( '#index' ).live('pageinit', function(event){
-    console.log("woot");
+    console.log('pageinit called');
   });
 
+  //listen to new post being submitted
   $( '#new_post' ).submit( function( e ) {
     var f = $( this );
     e.preventDefault();
@@ -50,16 +70,19 @@ DriveBy.initialize = function() {
     var comment = $( '#comment' ).val();
     var creator = $( '#creator' ).val();
 
-    var params = { state: state, license_plate: plate, comment: comment, creator: creator};
+    var params = {  state:          state, 
+                    license_plate:  plate, 
+                    comment:        comment, 
+                    creator:        creator};
+
     $.post( "/posts", params, function( data, textStatus, jqXHR ){
       if (data['success'] == true) {
-        $.mobile.changePage("/app/saved.html", { reloadPage: true}); //, { transition: "slideup"} );
+        $.mobile.changePage("/app/saved.html", { reloadPage: true, transition: "flip"} );
       } else {
-        $.mobile.changePage("/app/error.html", { reloadPage: true}); //, { transition: "slideup"} );
+        $.mobile.changePage("/app/error.html", { reloadPage: true, transition: "flip"} );
       }
       
     });
-    console.log("posted");
   });                    
 
 };
