@@ -120,4 +120,45 @@
     });
   </script>
 
+  <style>
+    .recent_submission {
+    
+    }
+    .recent_submission .plate_image {
+        position: relative; 
+        background: url(/app/images/nj.jpg) no-repeat; */
+        width: 250px; 
+        height: 130px;
+    }
+    .recent_submission .plate_text_container {
+        position: absolute; 
+        top: 0; left: 20px; width: 240px;
+    }
+    .recent_submission .plate_text {
+        font-size: 40px; 
+        position: relative; 
+        top: 30px; 
+        text-align: center;
+    }
+  </style>
+
+  <script id="recent_posts_template" type="text/x-handlebars-template">
+    <li>
+      <div class="recent_submission">
+        <div class="plate_image" style="background: url(/app/images/{{toLowerCase post.state}}.jpg) no-repeat" />
+
+        <p title='{{post.created_at}}' class='timeago ui-li-aside'>
+          {{post.created_at}}
+        </p>
+
+        <div class="plate_text_container">
+          <h3 class="plate_text"'>
+            {{post.license_plate}}
+           </h3>
+        </div>
+        <p>{{post.comment}}</p>
+      </div>
+    </li>
+  </script>
+
 </html>

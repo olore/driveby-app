@@ -15,13 +15,13 @@ Handlebars.registerHelper('toLowerCase', function(value) {
 DriveBy.add_recent_posts_to = function( recent_list ) {
 
   $.get( "/posts", function( posts ) {
-    //TODO: move this out somewhere
-    var post_source = "<li><div style='position: relative; background: url(/app/images/{{toLowerCase post.state}}.jpg) no-repeat; width: 250px; height: 130px;'/><p title='{{post.created_at}}' class='timeago ui-li-aside'>{{post.created_at}}</p><div style='position: absolute; top: 0; left: 20px; width: 240px'><h3 style='font-size: 40px; position: relative; top: 30px; text-align: center;'>{{post.license_plate}}</h3></div><p>{{post.comment}}</p></li>";
+    var post_source   = $("#recent_posts_template").html();
     var post_template = Handlebars.compile(post_source);
 
     $.each( posts , function(index, post) {
       recent_list.append(post_template( {'post': post} ));
     });
+
     recent_list.listview('refresh'); //apply the jqm style
     $(".timeago").timeago();
 
