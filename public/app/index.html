@@ -54,6 +54,7 @@
       .ui-li-thumb, .ui-listview .ui-li-icon {
         max-width: 120px;
       }
+
 		</style>
   </head>
 
@@ -121,24 +122,38 @@
   </script>
 
   <style>
-    .recent_submission {
-    
-    }
     .recent_submission .plate_image {
         position: relative; 
-        background: url(/app/images/nj.jpg) no-repeat; */
         width: 250px; 
-        height: 130px;
+        height: 60px;
+        -o-background-size:      120px 60px;
+        -webkit-background-size: 120px 60px;
+        -khtml-background-size : 120px 60px;
+        -moz-background-size:    120px 60px;
+        background-position: center center;
+
     }
     .recent_submission .plate_text_container {
         position: absolute; 
-        top: 0; left: 20px; width: 240px;
+        top: 10px; 
+        left: 20px; 
+        width: 98px;
     }
     .recent_submission .plate_text {
-        font-size: 40px; 
+        font-size: 25px; 
         position: relative; 
-        top: 30px; 
         text-align: center;
+    }
+    .recent_submission .comment {
+        position: absolute; 
+        top: 20px;
+        left: 145px;
+        font-size: 25px;
+        word-wrap: break-word;
+        line-height: 1;
+        height: 80px;
+        white-space: normal;
+        padding-right: 100px;
     }
   </style>
 
@@ -156,7 +171,9 @@
             {{post.license_plate}}
            </h3>
         </div>
-        <p>{{post.comment}}</p>
+        <p class="comment">
+          {{post.comment}}
+        </p>
       </div>
     </li>
   </script>
