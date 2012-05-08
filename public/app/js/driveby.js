@@ -1,7 +1,7 @@
 DriveBy = {};
 
 DriveBy.states = [
- 'AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 
+ 'AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', 'GA', 
  'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 
  'ME', 'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 
  'NJ', 'NM', 'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 
@@ -13,8 +13,9 @@ Handlebars.registerHelper('toLowerCase', function(value) {
 });
 
 DriveBy.add_recent_posts_to = function( recent_list ) {
-
-  $.get( "/posts", function( posts ) {
+    console.log("add_recent_posts_to");
+    
+  $.get( "http://driveby.olore.net/posts", function( posts ) {
     var post_source   = $("#recent_posts_template").html();
     var post_template = Handlebars.compile(post_source);
 
@@ -28,24 +29,28 @@ DriveBy.add_recent_posts_to = function( recent_list ) {
   });
 };
 
+//listen to pageinit (phonegap i think, maybe jqm)
+$( '#index' ).live('pageinit', function(event){
+  console.log('pageinit called');
+});
+
+
 DriveBy.initialize = function() {
-  
+  console.log("initialize called");
+
   //add states
   $.each( DriveBy.states , function(index, state) {
-    $( '.slider' ).append('<div class="item" id ="' + state + '"><a href="#"><img width="120" height="60" src="/app/images/' + state.toLowerCase() + '.jpg" /></a></div>');
+    $( '.slider' ).append('<div class="item" id ="' + state + '"><a href="#"><img width="120" height="60" src="http://driveby.olore.net/app/images/' + state.toLowerCase() + '.jpg" /></a></div>');
   });
+
+  $('.iosSlider').iosSlider({ 
+                              desktopClickDrag: true,
+                              startAtSlide: 30
+                            });
 
   //log any ajax errors
   $(document).ajaxError(function(e, jqxhr, settings, exception) {
-    console.log( "ajax error: " + exception);
-  });
-
-  //listen for mobileinit (phonegap i think)
-  $(document).bind("mobileinit", function(){
-    $.mobile.touchOverflowEnabled = true;
-    $.mobile.defaultPageTransition = "slide";
-    $.support.cors = true;
-    $.mobile.allowCrossDomainPages = true;
+    console.log( "AJAX error: " + e.message + "  ::  " + exception);
   });
 
   //listen to clicking to states
@@ -59,11 +64,6 @@ DriveBy.initialize = function() {
   });
 
   DriveBy.add_recent_posts_to( $( '#recent-list' ) );
-
-  //listen to pageinit (phonegap i think)
-  $( '#index' ).live('pageinit', function(event){
-    console.log('pageinit called');
-  });
 
   //listen to new post being submitted
   $( '#new_post' ).submit( function( e ) {
@@ -80,11 +80,11 @@ DriveBy.initialize = function() {
                     comment:        comment, 
                     creator:        creator};
 
-    $.post( "/posts", params, function( data, textStatus, jqXHR ){
+    $.post( "http://driveby.olore.net/posts", params, function( data, textStatus, jqXHR ){
       if (data['success'] == true) {
-        $.mobile.changePage("/app/saved.html", { reloadPage: true, transition: "flip"} );
+        $.mobile.changePage("http://driveby.olore.net/app/saved.html", { reloadPage: true, transition: "flip"} );
       } else {
-        $.mobile.changePage("/app/error.html", { reloadPage: true, transition: "flip"} );
+        $.mobile.changePage("http://driveby.olore.net/app/error.html", { reloadPage: true, transition: "flip"} );
       }
       
     });

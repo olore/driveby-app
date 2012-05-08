@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-
     <title>Drive By</title>
   
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta charset="utf-8">
 
+        
     <!-- iPad/iPhone specific css below, add after your main css >
     <link rel="stylesheet" media="only screen and (max-device-width: 1024px)" href="ipad.css" type="text/css" />    
     <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="iphone.css" type="text/css" />    
@@ -15,18 +15,48 @@
     <!-- If your application is targeting iOS BEFORE 4.0 you MUST put json2.js from http://www.JSON.org/json2.js into your www directory and include it here -->
 
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
+
     <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
-    <script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
 
+    <script>
+      //listen for mobileinit before loading jqm 
+      //see: http://jquerymobile.com/test/docs/api/globalconfig.html
+      $(document).bind("mobileinit", function(){
+        $.mobile.touchOverflowEnabled = true;
+        $.mobile.defaultPageTransition = "slide";
+        $.support.cors = true;
+        $.mobile.allowCrossDomainPages = true;
+      });
+    </script>
+    
+    <script type="text/javascript" charset="utf-8" src="http://driveby.olore.net/app/js/cordova-1.7.0.js"></script>
+    <script type="text/javascript" charset="utf-8" src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
 
-    <script type="text/javascript" charset="utf-8" src="/app/js/phonegap-1.1.0.js"></script>
-    <script type="text/javascript" charset="utf-8" src="/app/js/handlebars-1.0.0.beta.4.js"></script>
-    <script type="text/javascript" charset="utf-8" src="/app/js/ejs_production.js"></script>
-    <script type="text/javascript" charset="utf-8" src="/app/js/jquery.timeago.js"></script>
-    <script type="text/javascript" charset="utf-8" src="/app/js/jquery.ios-slider-0.9.1.js"></script>
+    <script type="text/javascript" charset="utf-8" src="http://driveby.olore.net/app/js/handlebars-1.0.0.beta.4.js"></script>
+    <script type="text/javascript" charset="utf-8" src="http://driveby.olore.net/app/js/ejs_production.js"></script>
+    <script type="text/javascript" charset="utf-8" src="http://driveby.olore.net/app/js/jquery.timeago.js"></script>
+    <script type="text/javascript" charset="utf-8" src="http://driveby.olore.net/app/js/jquery.ios-slider-0.9.1.js"></script>
+    <script type="text/javascript" charset="utf-8" src="http://driveby.olore.net/app/js/driveby.js"></script>
 
-    <script type="text/javascript" charset="utf-8" src="/app/js/driveby.js"></script>
+    <script type="text/javascript">
+      //jquery
+      $(document).ready(function() {
+        console.log("document.ready called");
+        DriveBy.initialize();
+      });
 
+      //phonegap
+      function onDeviceReady() {
+        console.log("ondeviceready called");
+        DriveBy.initialize();
+      }
+      
+      function onBodyLoad() {		
+        console.log("onBodyLoad called");
+        document.addEventListener("deviceready", onDeviceReady, false);
+      }
+        
+    </script>
 
 		<style type="text/css">
 			.iosSlider {
@@ -39,13 +69,13 @@
 			}
 			
 			.iosSlider .slider .item {
-				position: relative;
-				top: 0;
-				left: 0;
-				width: 130px;
-				height: 60px;
-				background: #F9F9F9;
-				margin: 0 0 0 0;
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 130px;
+        height: 60px;
+        background: #F9F9F9;
+        margin: 0 0 0 0;
         text-align: center;
         padding-top: 10px;
         padding-bottom: 10px;
@@ -55,10 +85,45 @@
         max-width: 120px;
       }
 
-		</style>
+      /* recent submissions */
+      .recent_submission .plate_image {
+          position: relative; 
+          width: 250px; 
+          height: 60px;
+          -o-background-size:      120px 60px;
+          -webkit-background-size: 120px 60px;
+          -khtml-background-size : 120px 60px;
+          -moz-background-size:    120px 60px;
+          background-position: center center;
+
+      }
+      .recent_submission .plate_text_container {
+          position: absolute; 
+          top: 16px; 
+          left: 16px; 
+          width: 120px;
+          height: 60px;
+      }
+      .recent_submission .plate_text {
+          font-size: 20px; 
+          position: relative; 
+          text-align: center;
+      }
+      .recent_submission .comment {
+          position: absolute; 
+          top: 20px;
+          left: 145px;
+          font-size: 12px;
+          word-wrap: break-word;
+          line-height: 1;
+          height: 80px;
+          white-space: normal;
+          padding-right: 100px;
+      }
+    </style>
   </head>
 
-  <body> 
+  <body onload="onBodyLoad()">
     <div data-role="page" id="index">
 
       <div data-role="header" data-position="fixed">
@@ -66,15 +131,14 @@
       </div><!-- /header -->
 
       <div data-role="content">
-
         <div class="content-primary">
 
           <form id="new_post" action="/posts" method="post" data-ajax="false">
 
             <label for="state">State:</label>
       
-            <div class='iosSlider'>
-              <div class='slider'> </div>
+            <div class="iosSlider">
+              <div class="slider"> </div>
             </div>
 
             <label for="license_plate">License Plate:</label>
@@ -84,7 +148,7 @@
             <textarea name="comment" id="comment"></textarea>
 
             <input type="hidden" id="creator" name="creator" value="testing_123" />
-            <input type="submit" value="Submit"/>
+            <input type="submit" value="Submit" />
           </form>
 
           <div id="recent">
@@ -102,81 +166,30 @@
 
     </div><!-- /page -->
   
-  </body>
 
-  <script type="text/javascript">
-    $(document).ready(function() {
+    <script id="recent_posts_template" type="text/x-handlebars-template">
+      <li>
+        <div class="recent_submission">
+          <div class="plate_image" style="background: url(http://driveby.olore.net/app/images/{{toLowerCase post.state}}.jpg) no-repeat" />
 
-      $(document).bind("deviceready", function(){
-        //Some day I may need to know that the device is ready (phonegap)
-        //Today is not that day
-      });
+          <p title="{{post.created_at}}" class="timeago ui-li-aside">
+            {{post.created_at}}
+          </p>
 
-      DriveBy.initialize();
+          <div class="plate_text_container">
+            <h3 class="plate_text">
+              {{post.license_plate}}
+             </h3>
+          </div>
 
-      $('.iosSlider').iosSlider({
-        desktopClickDrag: true
-      });
+          <p class="comment">
+            {{post.comment}}
+          </p>
 
-    });
-  </script>
-
-  <style>
-    .recent_submission .plate_image {
-        position: relative; 
-        width: 250px; 
-        height: 60px;
-        -o-background-size:      120px 60px;
-        -webkit-background-size: 120px 60px;
-        -khtml-background-size : 120px 60px;
-        -moz-background-size:    120px 60px;
-        background-position: center center;
-
-    }
-    .recent_submission .plate_text_container {
-        position: absolute; 
-        top: 16px; 
-        left: 16px; 
-        width: 120px;
-        height: 60px;
-    }
-    .recent_submission .plate_text {
-        font-size: 20px; 
-        position: relative; 
-        text-align: center;
-    }
-    .recent_submission .comment {
-        position: absolute; 
-        top: 20px;
-        left: 145px;
-        font-size: 12px;
-        word-wrap: break-word;
-        line-height: 1;
-        height: 80px;
-        white-space: normal;
-        padding-right: 100px;
-    }
-  </style>
-
-  <script id="recent_posts_template" type="text/x-handlebars-template">
-    <li>
-      <div class="recent_submission">
-        <div class="plate_image" style="background: url(/app/images/{{toLowerCase post.state}}.jpg) no-repeat" />
-
-        <p title='{{post.created_at}}' class='timeago ui-li-aside'>
-          {{post.created_at}}
-        </p>
-
-        <div class="plate_text_container">
-          <h3 class="plate_text"'>
-            {{post.license_plate}}
-           </h3>
         </div>
-        <p class="comment">
-          {{post.comment}}
-        </p>
-      </div>
-    </li>
-  </script>
+      </li>
+    </script>
 
+
+  </body>
 </html>
