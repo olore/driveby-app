@@ -13,7 +13,7 @@ Handlebars.registerHelper('toLowerCase', function(value) {
 });
 
 DriveBy.add_recent_posts_to = function( recent_list ) {
-    console.log("add_recent_posts_to");
+  console.log("add_recent_posts_to");
     
   $.get( "http://driveby.olore.net/posts", function( posts ) {
     var post_source   = $("#recent_posts_template").html();
