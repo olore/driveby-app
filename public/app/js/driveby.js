@@ -82,9 +82,16 @@ DriveBy.initialize = function() {
 
     $.post( "http://driveby.olore.net/posts", params, function( data, textStatus, jqXHR ){
       if (data['success'] == true) {
-        $.mobile.changePage("http://driveby.olore.net/app/saved.html", { reloadPage: true, transition: "flip"} );
+
+        $( '#comment' ).val('');
+        $( '#license_plate' ).val('');
+        $( '#recent-list' ).empty();
+        DriveBy.add_recent_posts_to( $( '#recent-list' ) );
+
       } else {
-        $.mobile.changePage("http://driveby.olore.net/app/error.html", { reloadPage: true, transition: "flip"} );
+
+		    navigator.notification.alert("Ooops, something went wrong. Please try again.")
+        //$.mobile.changePage("http://driveby.olore.net/app/error.html", { reloadPage: true, transition: "flip"} );
       }
       
     });
