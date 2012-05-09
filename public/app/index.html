@@ -29,26 +29,27 @@
       });
     </script>
     
-    <script type="text/javascript" charset="utf-8" src="http://driveby.olore.net/app/js/cordova-1.7.0.js"></script>
+    <script type="text/javascript" charset="utf-8" src="app/js/cordova-1.7.0.js"></script>
     <script type="text/javascript" charset="utf-8" src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
 
-    <script type="text/javascript" charset="utf-8" src="http://driveby.olore.net/app/js/handlebars-1.0.0.beta.4.js"></script>
-    <script type="text/javascript" charset="utf-8" src="http://driveby.olore.net/app/js/ejs_production.js"></script>
-    <script type="text/javascript" charset="utf-8" src="http://driveby.olore.net/app/js/jquery.timeago.js"></script>
-    <script type="text/javascript" charset="utf-8" src="http://driveby.olore.net/app/js/jquery.ios-slider-0.9.1.js"></script>
-    <script type="text/javascript" charset="utf-8" src="http://driveby.olore.net/app/js/driveby.js"></script>
+    <script type="text/javascript" charset="utf-8" src="app/js/handlebars-1.0.0.beta.4.js"></script>
+    <script type="text/javascript" charset="utf-8" src="app/js/ejs_production.js"></script>
+    <script type="text/javascript" charset="utf-8" src="app/js/jquery.timeago.js"></script>
+    <script type="text/javascript" charset="utf-8" src="app/js/jquery.ios-slider-0.9.1.js"></script>
+    <script type="text/javascript" charset="utf-8" src="app/js/driveby.js"></script>
 
     <script type="text/javascript">
-      //jquery
+
+      //jquery - for working in browser
       $(document).ready(function() {
-        console.log("document.ready called");
+        console.log("document.ready called, jquery ready");
         DriveBy.initialize();
       });
 
-      //phonegap
+      //phonegap - for working in app
       function onDeviceReady() {
-        console.log("ondeviceready called");
-        DriveBy.initialize();
+        console.log("ondeviceready called, phonegap ready");
+        DriveBy.initialize_phonegap();
       }
       
       function onBodyLoad() {		
@@ -134,7 +135,7 @@
       <div data-role="content">
         <div class="content-primary">
 
-          <form id="new_post" action="/posts" method="post" data-ajax="false">
+          <form id="new_post" data-ajax="false">
 
             <label for="state">State:</label>
       
@@ -148,8 +149,7 @@
             <label for="comment">Comment:</label>
             <textarea name="comment" id="comment"></textarea>
 
-            <input type="hidden" id="creator" name="creator" value="testing_123" />
-            <input type="submit" value="Submit" />
+            <input id="new_post_submit" type="submit" value="Submit" />
           </form>
 
           <div id="recent">
@@ -171,7 +171,7 @@
     <script id="recent_posts_template" type="text/x-handlebars-template">
       <li>
         <div class="recent_submission">
-          <div class="plate_image" style="background: url(http://driveby.olore.net/app/images/{{toLowerCase post.state}}.jpg) no-repeat" />
+          <div class="plate_image" style="background: url(app/images/{{toLowerCase post.state}}.jpg) no-repeat" />
 
           <p title="{{post.created_at}}" class="timeago ui-li-aside">
             {{post.created_at}}
