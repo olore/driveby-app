@@ -67,3 +67,8 @@
     padding-right: 100px;
 }
 
+/* States that need white text */
+.de, .in, .mt, .vt {
+  color: white;
+  text-shadow: 0 -1px 0 black;
+}
