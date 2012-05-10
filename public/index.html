@@ -1,241 +1,198 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Ruby on Rails: Welcome aboard</title>
-    <style type="text/css" media="screen">
-      body {
-        margin: 0;
-        margin-bottom: 25px;
-        padding: 0;
-        background-color: #f0f0f0;
-        font-family: "Lucida Grande", "Bitstream Vera Sans", "Verdana";
-        font-size: 13px;
-        color: #333;
-      }
+    <title>Drive By</title>
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta charset="utf-8">
 
-      h1 {
-        font-size: 28px;
-        color: #000;
-      }
+        
+    <!-- iPad/iPhone specific css below, add after your main css >
+    <link rel="stylesheet" media="only screen and (max-device-width: 1024px)" href="ipad.css" type="text/css" />    
+    <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="iphone.css" type="text/css" />    
+    -->
 
-      a  {color: #03c}
-      a:hover {
-        background-color: #03c;
-        color: white;
-        text-decoration: none;
-      }
+    <!-- If your application is targeting iOS BEFORE 4.0 you MUST put json2.js from http://www.JSON.org/json2.js into your www directory and include it here -->
 
+    <link rel="stylesheet" href="app/css/jquery.mobile-1.1.0.min.css" />
 
-      #page {
-        background-color: #f0f0f0;
-        width: 750px;
-        margin: 0;
-        margin-left: auto;
-        margin-right: auto;
-      }
+    <script src="app/js/jquery-1.6.4.min.js"></script>
 
-      #content {
-        float: left;
-        background-color: white;
-        border: 3px solid #aaa;
-        border-top: none;
-        padding: 25px;
-        width: 500px;
-      }
+    <script>
+      //listen for mobileinit before loading jqm 
+      //see: http://jquerymobile.com/test/docs/api/globalconfig.html
+      $(document).bind("mobileinit", function(){
+        $.mobile.touchOverflowEnabled = true;
+        $.mobile.defaultPageTransition = "slide";
+        $.support.cors = true;
+        $.mobile.allowCrossDomainPages = true;
+      });
+    </script>
+    
+    <script type="text/javascript" charset="utf-8" src="app/js/cordova-1.7.0.js"></script>
+    <script type="text/javascript" charset="utf-8" src="app/js/jquery.mobile-1.1.0.min.js"></script>
 
-      #sidebar {
-        float: right;
-        width: 175px;
-      }
+    <script type="text/javascript" charset="utf-8" src="app/js/handlebars-1.0.0.beta.4.js"></script>
+    <script type="text/javascript" charset="utf-8" src="app/js/jquery.timeago.js"></script>
+    <script type="text/javascript" charset="utf-8" src="app/js/jquery.ios-slider-0.9.1.js"></script>
+    <script type="text/javascript" charset="utf-8" src="app/js/driveby.js"></script>
 
-      #footer {
-        clear: both;
-      }
+    <script type="text/javascript">
 
-      #header, #about, #getting-started {
-        padding-left: 75px;
-        padding-right: 30px;
-      }
+      //jquery - for working in browser
+      $(document).ready(function() {
+        console.log("document.ready called, jquery ready");
+        DriveBy.initialize();
+      });
 
+      //phonegap - for working in app
+      function onDeviceReady() {
+        console.log("ondeviceready called, phonegap ready");
+        DriveBy.initialize_phonegap();
+      }
+      
+      function onBodyLoad() {		
+        console.log("onBodyLoad called");
+        document.addEventListener("deviceready", onDeviceReady, false);
+      }
+        
+    </script>
 
-      #header {
-        background-image: url("assets/rails.png");
-        background-repeat: no-repeat;
-        background-position: top left;
-        height: 64px;
-      }
-      #header h1, #header h2 {margin: 0}
-      #header h2 {
-        color: #888;
-        font-weight: normal;
-        font-size: 16px;
-      }
-
-
-      #about h3 {
-        margin: 0;
-        margin-bottom: 10px;
-        font-size: 14px;
-      }
-
-      #about-content {
-        background-color: #ffd;
-        border: 1px solid #fc0;
-        margin-left: -55px;
-        margin-right: -10px;
-      }
-      #about-content table {
-        margin-top: 10px;
-        margin-bottom: 10px;
-        font-size: 11px;
-        border-collapse: collapse;
-      }
-      #about-content td {
-        padding: 10px;
-        padding-top: 3px;
-        padding-bottom: 3px;
-      }
-      #about-content td.name  {color: #555}
-      #about-content td.value {color: #000}
-
-      #about-content ul {
-        padding: 0;
-        list-style-type: none;
-      }
-
-      #about-content.failure {
-        background-color: #fcc;
-        border: 1px solid #f00;
-      }
-      #about-content.failure p {
-        margin: 0;
-        padding: 10px;
-      }
-
-
-      #getting-started {
-        border-top: 1px solid #ccc;
-        margin-top: 25px;
-        padding-top: 15px;
-      }
-      #getting-started h1 {
-        margin: 0;
-        font-size: 20px;
-      }
-      #getting-started h2 {
-        margin: 0;
-        font-size: 14px;
-        font-weight: normal;
-        color: #333;
-        margin-bottom: 25px;
-      }
-      #getting-started ol {
-        margin-left: 0;
-        padding-left: 0;
-      }
-      #getting-started li {
-        font-size: 18px;
-        color: #888;
-        margin-bottom: 25px;
-      }
-      #getting-started li h2 {
-        margin: 0;
-        font-weight: normal;
-        font-size: 18px;
-        color: #333;
-      }
-      #getting-started li p {
-        color: #555;
-        font-size: 13px;
-      }
-
-
-      #sidebar ul {
-        margin-left: 0;
-        padding-left: 0;
-      }
-      #sidebar ul h3 {
-        margin-top: 25px;
-        font-size: 16px;
+		<style type="text/css">
+			.iosSlider {
+				width: 100%;
+				height: 80px;
+			}
+			
+			.iosSlider .slider {
+				width: 100%;
+			}
+			
+			.iosSlider .slider .item {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 130px;
+        height: 60px;
+        background: #F9F9F9;
+        margin: 0 0 0 0;
+        text-align: center;
+        padding-top: 10px;
         padding-bottom: 10px;
-        border-bottom: 1px solid #ccc;
-      }
-      #sidebar li {
-        list-style-type: none;
-      }
-      #sidebar ul.links li {
-        margin-bottom: 5px;
+			}
+			
+      .ui-li-thumb, .ui-listview .ui-li-icon {
+        max-width: 120px;
       }
 
-      .filename {
-        font-style: italic;
+      .ui-content {
+        padding: 5px;
+      }
+      /* recent submissions */
+      .recent_submission .plate_image {
+          position: relative; 
+          width: 250px; 
+          height: 60px;
+          -o-background-size:      120px 60px;
+          -webkit-background-size: 120px 60px;
+          -khtml-background-size : 120px 60px;
+          -moz-background-size:    120px 60px;
+          background-position: center center;
+
+      }
+      .recent_submission .plate_text_container {
+          position: absolute; 
+          top: 16px; 
+          left: 16px; 
+          width: 120px;
+          height: 60px;
+      }
+      .recent_submission .plate_text {
+          font-size: 20px; 
+          position: relative; 
+          text-align: center;
+          text-transform: uppercase;
+      }
+      .recent_submission .comment {
+          position: absolute; 
+          top: 20px;
+          left: 145px;
+          font-size: 12px;
+          word-wrap: break-word;
+          line-height: 1;
+          height: 80px;
+          white-space: normal;
+          padding-right: 100px;
       }
     </style>
-    <script type="text/javascript">
-      function about() {
-        info = document.getElementById('about-content');
-        if (window.XMLHttpRequest)
-          { xhr = new XMLHttpRequest(); }
-        else
-          { xhr = new ActiveXObject("Microsoft.XMLHTTP"); }
-        xhr.open("GET","rails/info/properties",false);
-        xhr.send("");
-        info.innerHTML = xhr.responseText;
-        info.style.display = 'block'
-      }
-    </script>
   </head>
-  <body>
-    <div id="page">
-      <div id="sidebar">
-        <ul id="sidebar-items">
-          <li>
-            <h3>Browse the documentation</h3>
-            <ul class="links">
-              <li><a href="http://guides.rubyonrails.org/">Rails Guides</a></li>
-              <li><a href="http://api.rubyonrails.org/">Rails API</a></li>
-              <li><a href="http://www.ruby-doc.org/core/">Ruby core</a></li>
-              <li><a href="http://www.ruby-doc.org/stdlib/">Ruby standard library</a></li>
+
+  <body onload="onBodyLoad()">
+    <div data-role="page" id="index">
+
+      <div data-role="header" data-position="fixed">
+        <h1>Drive By</h1>
+      </div><!-- /header -->
+
+      <div data-role="content">
+        <div class="content-primary">
+
+          <form id="new_post" data-ajax="false">
+
+            <label for="state">State:</label>
+      
+            <div class="iosSlider">
+              <div class="slider"> </div>
+            </div>
+
+            <label for="license_plate">License Plate:</label>
+            <input type="text" name="license_plate" id="license_plate" value="" style="text-transform: uppercase" maxlength="8" />
+
+            <label for="comment">Comment:</label>
+            <textarea name="comment" id="comment"></textarea>
+
+            <input id="new_post_submit" type="submit" value="Submit" />
+          </form>
+
+          <div id="recent">
+            <h3>Recent submissions</h3>
+            <ul id="recent-list" data-role="listview" style="position: relative">
             </ul>
-          </li>
-        </ul>
-      </div>
-
-      <div id="content">
-        <div id="header">
-          <h1>Welcome aboard</h1>
-          <h2>You&rsquo;re riding Ruby on Rails!</h2>
+          </div>
         </div>
+        
+      </div><!-- /content -->
 
-        <div id="about">
-          <h3><a href="rails/info/properties" onclick="about(); return false">About your application&rsquo;s environment</a></h3>
-          <div id="about-content" style="display: none"></div>
+      <div data-role="footer" data-id="my-footer" data-position="fixed">
+        <h4>Drive Safely!</h4>
+      </div><!-- /footer -->
+
+    </div><!-- /page -->
+  
+
+    <script id="recent_posts_template" type="text/x-handlebars-template">
+      <li>
+        <div class="recent_submission">
+          <div class="plate_image" style="background: url(app/images/{{toLowerCase post.state}}.jpg) no-repeat" />
+
+          <p title="{{post.created_at}}" class="timeago ui-li-aside">
+            {{post.created_at}}
+          </p>
+
+          <div class="plate_text_container">
+            <h3 class="plate_text">
+              {{post.license_plate}}
+             </h3>
+          </div>
+
+          <p class="comment">
+            {{post.comment}}
+          </p>
+
         </div>
+      </li>
+    </script>
 
-        <div id="getting-started">
-          <h1>Getting started</h1>
-          <h2>Here&rsquo;s how to get rolling:</h2>
 
-          <ol>
-            <li>
-              <h2>Use <code>rails generate</code> to create your models and controllers</h2>
-              <p>To see all available options, run it without parameters.</p>
-            </li>
-
-            <li>
-              <h2>Set up a default route and remove <span class="filename">public/index.html</span></h2>
-              <p>Routes are set up in <span class="filename">config/routes.rb</span>.</p>
-            </li>
-
-            <li>
-              <h2>Create your database</h2>
-              <p>Run <code>rake db:create</code> to create your database. If you're not using SQLite (the default), edit <span class="filename">config/database.yml</span> with your username and password.</p>
-            </li>
-          </ol>
-        </div>
-      </div>
-
-      <div id="footer">&nbsp;</div>
-    </div>
   </body>
 </html>
