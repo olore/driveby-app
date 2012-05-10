@@ -1,0 +1,69 @@
+/* iOS slider */
+.iosSlider {
+  width: 100%;
+  height: 80px;
+}
+
+.iosSlider .slider {
+  width: 100%;
+}
+
+.iosSlider .slider .item {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 130px;
+  height: 60px;
+  background: #F9F9F9;
+  margin: 0 0 0 0;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/*jQuery mobile overrides */
+.ui-li-thumb, .ui-listview .ui-li-icon {
+  max-width: 120px;
+}
+
+.ui-content {
+  padding: 5px;
+}
+
+/* recent submissions */
+.recent_submission .plate_image {
+    position: relative; 
+    width: 250px; 
+    height: 60px;
+    -o-background-size:      120px 60px;
+    -webkit-background-size: 120px 60px;
+    -khtml-background-size : 120px 60px;
+    -moz-background-size:    120px 60px;
+    background-position: center center;
+
+}
+.recent_submission .plate_text_container {
+    position: absolute; 
+    top: 16px; 
+    left: 16px; 
+    width: 120px;
+    height: 60px;
+}
+.recent_submission .plate_text {
+    font-size: 20px; 
+    position: relative; 
+    text-align: center;
+    text-transform: uppercase;
+}
+.recent_submission .comment {
+    position: absolute; 
+    top: 20px;
+    left: 145px;
+    font-size: 12px;
+    word-wrap: break-word;
+    line-height: 1;
+    height: 80px;
+    white-space: normal;
+    padding-right: 100px;
+}
+
