@@ -1,7 +1,7 @@
 DriveBy = {};
 
-//DriveBy.host = "http://driveby.olore.net";
-DriveBy.host = "http://localhost:3000";
+DriveBy.host = "http://driveby.olore.net";
+//DriveBy.host = "http://localhost:3000";
 
 DriveBy.states = [
  'AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', 'GA', 
