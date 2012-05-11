@@ -1,3 +1,8 @@
+@font-face {
+  font-family: motorway;
+  src: url('motorway.ttf'); /* From: http://www.dafont.com/motorway.font */
+}
+
 /* iOS slider */
 .iosSlider {
   width: 100%;
@@ -44,16 +49,18 @@
 }
 .recent_submission .plate_text_container {
     position: absolute; 
-    top: 16px; 
+    top: 5px; 
     left: 16px; 
     width: 120px;
     height: 60px;
 }
 .recent_submission .plate_text {
-    font-size: 20px; 
+    font-size: 31px; 
     position: relative; 
     text-align: center;
     text-transform: uppercase;
+    /*font-family: 'Doppio One', sans-serif; */
+    font-family: motorway;
 }
 .recent_submission .comment {
     position: absolute; 
@@ -71,4 +78,15 @@
 .de, .in, .mt, .vt {
   color: white;
   text-shadow: 0 -1px 0 black;
+}
+/* Dark red */
+.ma {
+  color: #B40404;
+  text-shadow: 0 -1px 0 white;
+}
+
+/* Dark blue */
+.pa {
+  color: #0B0B61;
+  text-shadow: 0 -1px 0 white;
 }
