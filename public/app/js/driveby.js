@@ -68,7 +68,6 @@ DriveBy.initialize = function() {
 
   //listen to new post being submitted
   $( '#new_post_submit' ).click( function( e ) {
-    var f = $( this );
     e.preventDefault();
     e.stopPropagation();
 
@@ -77,6 +76,9 @@ DriveBy.initialize = function() {
     var comment = $( '#comment' ).val();
     var creator = DriveBy.uuid || "no_uuid";
 
+    if (!plate || !comment || !state) {
+      return;
+    }
     var params = {  state:          state, 
                     license_plate:  plate, 
                     comment:        comment, 

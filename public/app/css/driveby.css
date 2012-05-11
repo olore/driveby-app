@@ -74,6 +74,14 @@
     padding-right: 100px;
 }
 
+#recent_list {
+  position: relative;
+}
+
+#license_plate {
+  text-transform: uppercase;
+}
+
 /* States that need white text */
 .de, .in, .mt, .vt {
   color: white;
