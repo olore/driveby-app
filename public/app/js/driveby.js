@@ -4,9 +4,9 @@ DriveBy.host = "http://driveby.olore.net";
 //DriveBy.host = "http://localhost:3000";
 
 /* Wrapper to support browsers & phonegap */
-DriveBy.alert = function(str) {
+DriveBy.alert = function(title, str) {
   if (navigator.notification) {
-    navigator.notification.alert(str);
+    navigator.notification.alert(str, null, title);
   } else {
     alert(str);
   }
@@ -40,10 +40,16 @@ DriveBy.add_recent_posts_to = function( recent_list ) {
   });
 };
 
+DriveBy.show_retry_error_alert = function() {
+  alert("Error occurred", "Please try again.")
+};
+
 DriveBy.initialize_phonegap = function() {
   DriveBy.uuid    = device.uuid;
   DriveBy.device  = device.name;
   DriveBy.version = device.version;
+
+  DriveBy.add_recent_posts_to( $( '#recent-list' ) );
 };
 
 DriveBy.initialize = function() {
@@ -60,6 +66,8 @@ DriveBy.initialize = function() {
 
   /* log any ajax errors */
   $(document).ajaxError(function(e, jqxhr, settings, exception) {
+    $.mobile.hidePageLoadingMsg();
+    DriveBy.show_retry_error_alert();
     console.log( "AJAX error: " + e.message + "  ::  " + exception);
   });
 
@@ -75,8 +83,6 @@ DriveBy.initialize = function() {
     $( this ).attr('data-selected', 'true');
   });
 
-  DriveBy.add_recent_posts_to( $( '#recent-list' ) );
-
   /* listen to new post being submitted */
   $( '#new_post_submit' ).click( function( e ) {
     e.preventDefault();
@@ -91,20 +97,28 @@ DriveBy.initialize = function() {
       return;
     }
 
-    var params = {  state:          state, 
-                    license_plate:  plate, 
-                    comment:        comment, 
-                    creator:        creator
-    };
+    DriveBy.save_post( { state:          state, 
+                         license_plate:  plate, 
+                         comment:        comment, 
+                         creator:        creator });
+
+  });                    
+};
+
+DriveBy.save_post = function(params) {
+
+    $.mobile.loadingMessageTextVisible = true;
+    $.mobile.loadingMessage = "Saving, please wait...";
+    $.mobile.showPageLoadingMsg();
 
     $.post( DriveBy.host + "/posts", params, function( data, textStatus, jqXHR ){
+      $.mobile.hidePageLoadingMsg();
       if (data['success'] == true) {
         DriveBy.successfulPost();
       } else {
-		    DriveBy..alert("Ooops, something went wrong. Please try again.")
+        DriveBy.show_retry_error_alert();
       }
     });
-  });                    
 };
 
 DriveBy.successfulPost = function() {
@@ -112,6 +126,6 @@ DriveBy.successfulPost = function() {
   $( '#license_plate' ).val('');
   $( '#recent-list'   ).empty();
   DriveBy.add_recent_posts_to( $( '#recent-list' ) );
-  DriveBy.alert("Saved. Thank you.");
+  DriveBy.alert("Successful save", "Thank you.");
 };
 
