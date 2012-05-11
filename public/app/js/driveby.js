@@ -3,6 +3,15 @@ DriveBy = {};
 DriveBy.host = "http://driveby.olore.net";
 //DriveBy.host = "http://localhost:3000";
 
+/* Wrapper to support browsers & phonegap */
+DriveBy.alert = function(str) {
+  if (navigator.notification) {
+    navigator.notification.alert(str);
+  } else {
+    alert(str);
+  }
+};
+
 DriveBy.states = [
  'AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', 'GA', 
  'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 
@@ -25,7 +34,7 @@ DriveBy.add_recent_posts_to = function( recent_list ) {
       recent_list.append(post_template( {'post': post} ));
     });
 
-    recent_list.listview('refresh'); //apply the jqm style
+    recent_list.listview('refresh'); /* apply the jqm style */
     $(".timeago").timeago();
 
   });
@@ -39,7 +48,7 @@ DriveBy.initialize_phonegap = function() {
 
 DriveBy.initialize = function() {
   
-  //add states
+  /* add license plates to slider */
   $.each( DriveBy.states , function(index, state) {
     $( '.slider' ).append('<div class="item" id ="' + state + '"><a href="#"><img width="120" height="60" src="app/images/' + state.toLowerCase() + '.jpg" /></a></div>');
   });
@@ -49,24 +58,26 @@ DriveBy.initialize = function() {
                               startAtSlide: 30
                             });
 
-  //log any ajax errors
+  /* log any ajax errors */
   $(document).ajaxError(function(e, jqxhr, settings, exception) {
     console.log( "AJAX error: " + e.message + "  ::  " + exception);
   });
 
-  //listen to clicking to states
+  /* listen to clicking to states */
   var states = $( '.item' )
   states.bind("click", function(){
+    /* reset all states to default */
     states.css('background-color', '#F9F9F9');
     states.attr('data-selected', 'false');
 
+    /* select the one that was clicked */
     $( this ).css('background-color', 'cyan');
     $( this ).attr('data-selected', 'true');
   });
 
   DriveBy.add_recent_posts_to( $( '#recent-list' ) );
 
-  //listen to new post being submitted
+  /* listen to new post being submitted */
   $( '#new_post_submit' ).click( function( e ) {
     e.preventDefault();
     e.stopPropagation();
@@ -79,25 +90,28 @@ DriveBy.initialize = function() {
     if (!plate || !comment || !state) {
       return;
     }
+
     var params = {  state:          state, 
                     license_plate:  plate, 
                     comment:        comment, 
-                    creator:        creator};
+                    creator:        creator
+    };
 
     $.post( DriveBy.host + "/posts", params, function( data, textStatus, jqXHR ){
       if (data['success'] == true) {
-
-        $( '#comment' ).val('');
-        $( '#license_plate' ).val('');
-        $( '#recent-list' ).empty();
-        DriveBy.add_recent_posts_to( $( '#recent-list' ) );
-
+        DriveBy.successfulPost();
       } else {
-
-		    navigator.notification.alert("Ooops, something went wrong. Please try again.")
+		    DriveBy..alert("Ooops, something went wrong. Please try again.")
       }
-      
     });
   });                    
-
 };
+
+DriveBy.successfulPost = function() {
+  $( '#comment'       ).val('');
+  $( '#license_plate' ).val('');
+  $( '#recent-list'   ).empty();
+  DriveBy.add_recent_posts_to( $( '#recent-list' ) );
+  DriveBy.alert("Saved. Thank you.");
+};
+
