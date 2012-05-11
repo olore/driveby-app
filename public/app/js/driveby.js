@@ -48,8 +48,6 @@ DriveBy.initialize_phonegap = function() {
   DriveBy.uuid    = device.uuid;
   DriveBy.device  = device.name;
   DriveBy.version = device.version;
-
-  DriveBy.add_recent_posts_to( $( '#recent-list' ) );
 };
 
 DriveBy.initialize = function() {
@@ -103,6 +101,8 @@ DriveBy.initialize = function() {
                          creator:        creator });
 
   });                    
+
+  DriveBy.add_recent_posts_to( $( '#recent-list' ) );
 };
 
 DriveBy.save_post = function(params) {
