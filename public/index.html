@@ -108,12 +108,14 @@
 
     <script id="recent_posts_template" type="text/x-handlebars-template">
       <li>
-        <div class="recent_submission">
-          <div class="plate_image" style="background: url(app/images/{{toLowerCase post.state}}.jpg) no-repeat" />
+        <div class="recent_submission clearfix">
+          <div style="float: right">
+            <img class="plate_image" height="60" width="120" src="app/images/{{toLowerCase post.state}}.jpg" />
 
-          <p title="{{post.created_at}}" class="timeago ui-li-aside">
-            {{post.created_at}}
-          </p>
+            <p title="{{post.created_at}}" class="timeago">
+              {{post.created_at}}
+            </p>
+          </div>
 
           <div class="plate_text_container">
             <h3 class="plate_text {{toLowerCase post.state}}">
