@@ -24,8 +24,10 @@ Handlebars.registerHelper('toLowerCase', function(value) {
   return new Handlebars.SafeString(value.toLowerCase());
 });
 
-DriveBy.add_recent_posts_to = function( recent_list ) {
-    
+DriveBy.update_recent_posts = function(func) {
+  var recent_list = $( '#recent-list'   );
+  recent_list.empty();
+
   $.get( DriveBy.host + "/posts", function( posts ) {
     var post_source   = $("#recent_posts_template").html();
     var post_template = Handlebars.compile(post_source);
@@ -37,6 +39,7 @@ DriveBy.add_recent_posts_to = function( recent_list ) {
     recent_list.listview('refresh'); /* apply the jqm style */
     $(".timeago").timeago();
 
+    if (func) { func(); }
   });
 };
 
@@ -102,7 +105,18 @@ DriveBy.initialize = function() {
 
   });                    
 
-  DriveBy.add_recent_posts_to( $( '#recent-list' ) );
+  DriveBy.update_recent_posts();
+
+  /* listen to refresh click */
+  $( '#refresh' ).click(function() {
+    $.mobile.loadingMessageTextVisible = true;
+    $.mobile.loadingMessage = "Refreshing, please wait...";
+    $.mobile.showPageLoadingMsg();
+
+    DriveBy.update_recent_posts(function() {
+      $.mobile.hidePageLoadingMsg();
+    });
+  });
 };
 
 DriveBy.save_post = function(params) {
@@ -124,8 +138,8 @@ DriveBy.save_post = function(params) {
 DriveBy.successfulPost = function() {
   $( '#comment'       ).val('');
   $( '#license_plate' ).val('');
-  $( '#recent-list'   ).empty();
-  DriveBy.add_recent_posts_to( $( '#recent-list' ) );
-  DriveBy.alert("Successful save", "Thank you.");
+  DriveBy.update_recent_posts(function() {
+    DriveBy.alert("Successful save", "Thank you.");
+  });
 };
 
