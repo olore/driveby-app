@@ -47,8 +47,6 @@
 	<true/>
 	<key>NSMainNibFile~ipad</key>
 	<string></string>
-	<key>UILaunchImageFile~ipad</key>
-	<string>Default~iphone.png</string>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>UISupportedInterfaceOrientations</key>

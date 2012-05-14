@@ -30,8 +30,8 @@
 		D335171C15560BD9008EE025 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D335171B15560BD9008EE025 /* icon.png */; };
 		D335171E15560BD9008EE025 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D335171D15560BD9008EE025 /* icon@2x.png */; };
 		D335172015560BD9008EE025 /* icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = D335171F15560BD9008EE025 /* icon-72.png */; };
-		D335172315560BD9008EE025 /* Default~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D335172215560BD9008EE025 /* Default~iphone.png */; };
-		D335172515560BD9008EE025 /* Default@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D335172415560BD9008EE025 /* Default@2x~iphone.png */; };
+		D335172315560BD9008EE025 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D335172215560BD9008EE025 /* Default.png */; };
+		D335172515560BD9008EE025 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D335172415560BD9008EE025 /* Default@2x.png */; };
 		D335172715560BD9008EE025 /* Capture.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D335172615560BD9008EE025 /* Capture.bundle */; };
 		D335172915560BD9008EE025 /* Cordova.plist in Resources */ = {isa = PBXBuildFile; fileRef = D335172815560BD9008EE025 /* Cordova.plist */; };
 		D335172D15560BD9008EE025 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D335172C15560BD9008EE025 /* AppDelegate.m */; };
@@ -40,6 +40,7 @@
 		D335173615560BDA008EE025 /* verify.sh in Resources */ = {isa = PBXBuildFile; fileRef = D335173515560BDA008EE025 /* verify.sh */; };
 		D335174115560DDE008EE025 /* www in Resources */ = {isa = PBXBuildFile; fileRef = D335174015560DDE008EE025 /* www */; };
 		D3351743155612D4008EE025 /* phonegap-index.html in Resources */ = {isa = PBXBuildFile; fileRef = D3351742155612D4008EE025 /* phonegap-index.html */; };
+		D34726C61560998300C0C2A5 /* Default~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = D34726C51560998300C0C2A5 /* Default~ipad.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,8 +70,8 @@
 		D335171B15560BD9008EE025 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = Resources/icons/icon.png; sourceTree = "<group>"; };
 		D335171D15560BD9008EE025 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon@2x.png"; path = "Resources/icons/icon@2x.png"; sourceTree = "<group>"; };
 		D335171F15560BD9008EE025 /* icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-72.png"; path = "Resources/icons/icon-72.png"; sourceTree = "<group>"; };
-		D335172215560BD9008EE025 /* Default~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default~iphone.png"; path = "Resources/splash/Default~iphone.png"; sourceTree = "<group>"; };
-		D335172415560BD9008EE025 /* Default@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x~iphone.png"; path = "Resources/splash/Default@2x~iphone.png"; sourceTree = "<group>"; };
+		D335172215560BD9008EE025 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/splash/Default.png; sourceTree = "<group>"; };
+		D335172415560BD9008EE025 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources/splash/Default@2x.png"; sourceTree = "<group>"; };
 		D335172615560BD9008EE025 /* Capture.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Capture.bundle; path = Resources/Capture.bundle; sourceTree = "<group>"; };
 		D335172815560BD9008EE025 /* Cordova.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Cordova.plist; sourceTree = "<group>"; };
 		D335172B15560BD9008EE025 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
@@ -82,6 +83,7 @@
 		D335173515560BDA008EE025 /* verify.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = verify.sh; sourceTree = "<group>"; };
 		D335174015560DDE008EE025 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
 		D3351742155612D4008EE025 /* phonegap-index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "phonegap-index.html"; path = "../../../ruby/driveby.olore.net/public/app/phonegap-index.html"; sourceTree = "<group>"; };
+		D34726C51560998300C0C2A5 /* Default~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default~ipad.png"; path = "Resources/splash/Default~ipad.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,8 +242,9 @@
 		D335172115560BD9008EE025 /* splash */ = {
 			isa = PBXGroup;
 			children = (
-				D335172215560BD9008EE025 /* Default~iphone.png */,
-				D335172415560BD9008EE025 /* Default@2x~iphone.png */,
+				D34726C51560998300C0C2A5 /* Default~ipad.png */,
+				D335172215560BD9008EE025 /* Default.png */,
+				D335172415560BD9008EE025 /* Default@2x.png */,
 			);
 			name = splash;
 			sourceTree = "<group>";
@@ -326,14 +329,15 @@
 				D335171C15560BD9008EE025 /* icon.png in Resources */,
 				D335171E15560BD9008EE025 /* icon@2x.png in Resources */,
 				D335172015560BD9008EE025 /* icon-72.png in Resources */,
-				D335172315560BD9008EE025 /* Default~iphone.png in Resources */,
-				D335172515560BD9008EE025 /* Default@2x~iphone.png in Resources */,
+				D335172315560BD9008EE025 /* Default.png in Resources */,
+				D335172515560BD9008EE025 /* Default@2x.png in Resources */,
 				D335172715560BD9008EE025 /* Capture.bundle in Resources */,
 				D335172915560BD9008EE025 /* Cordova.plist in Resources */,
 				D335173215560BDA008EE025 /* MainViewController.xib in Resources */,
 				D335173615560BDA008EE025 /* verify.sh in Resources */,
 				D335174115560DDE008EE025 /* www in Resources */,
 				D3351743155612D4008EE025 /* phonegap-index.html in Resources */,
+				D34726C61560998300C0C2A5 /* Default~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
