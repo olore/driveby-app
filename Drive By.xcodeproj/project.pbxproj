@@ -38,6 +38,8 @@
 		D335173015560BDA008EE025 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D335172F15560BDA008EE025 /* MainViewController.m */; };
 		D335173215560BDA008EE025 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D335173115560BDA008EE025 /* MainViewController.xib */; };
 		D335173615560BDA008EE025 /* verify.sh in Resources */ = {isa = PBXBuildFile; fileRef = D335173515560BDA008EE025 /* verify.sh */; };
+		D335174115560DDE008EE025 /* www in Resources */ = {isa = PBXBuildFile; fileRef = D335174015560DDE008EE025 /* www */; };
+		D3351743155612D4008EE025 /* phonegap-index.html in Resources */ = {isa = PBXBuildFile; fileRef = D3351742155612D4008EE025 /* phonegap-index.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,10 +57,10 @@
 		D33516F815560BD8008EE025 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D33516FA15560BD8008EE025 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		D33516FC15560BD8008EE025 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		D335170015560BD9008EE025 /* Drive By-Info.plist */ = {isa = PBXFileReference; path = "Drive By-Info.plist"; sourceTree = "<group>"; };
+		D335170015560BD9008EE025 /* Drive By-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Drive By-Info.plist"; sourceTree = "<group>"; };
 		D335170215560BD9008EE025 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D335170415560BD9008EE025 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		D335170615560BD9008EE025 /* Drive By-Prefix.pch */ = {isa = PBXFileReference; path = "Drive By-Prefix.pch"; sourceTree = "<group>"; };
+		D335170615560BD9008EE025 /* Drive By-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Drive By-Prefix.pch"; sourceTree = "<group>"; };
 		D335170715560BD9008EE025 /* Cordova.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cordova.framework; path = /Users/Shared/Cordova/Frameworks/Cordova.framework; sourceTree = "<absolute>"; };
 		D335170C15560BD9008EE025 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Resources/en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D335171015560BD9008EE025 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = Resources/es.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -71,13 +73,15 @@
 		D335172415560BD9008EE025 /* Default@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x~iphone.png"; path = "Resources/splash/Default@2x~iphone.png"; sourceTree = "<group>"; };
 		D335172615560BD9008EE025 /* Capture.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Capture.bundle; path = Resources/Capture.bundle; sourceTree = "<group>"; };
 		D335172815560BD9008EE025 /* Cordova.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Cordova.plist; sourceTree = "<group>"; };
-		D335172B15560BD9008EE025 /* AppDelegate.h */ = {isa = PBXFileReference; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
+		D335172B15560BD9008EE025 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		D335172C15560BD9008EE025 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
-		D335172E15560BDA008EE025 /* MainViewController.h */ = {isa = PBXFileReference; name = MainViewController.h; path = Classes/MainViewController.h; sourceTree = "<group>"; };
+		D335172E15560BDA008EE025 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = Classes/MainViewController.h; sourceTree = "<group>"; };
 		D335172F15560BDA008EE025 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = Classes/MainViewController.m; sourceTree = "<group>"; };
 		D335173115560BDA008EE025 /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainViewController.xib; path = Classes/MainViewController.xib; sourceTree = "<group>"; };
-		D335173415560BDA008EE025 /* README */ = {isa = PBXFileReference; name = README; path = Plugins/README; sourceTree = "<group>"; };
+		D335173415560BDA008EE025 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; name = README; path = Plugins/README; sourceTree = "<group>"; };
 		D335173515560BDA008EE025 /* verify.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = verify.sh; sourceTree = "<group>"; };
+		D335174015560DDE008EE025 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
+		D3351742155612D4008EE025 /* phonegap-index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "phonegap-index.html"; path = "../../../ruby/driveby.olore.net/public/app/phonegap-index.html"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +119,8 @@
 		D33516D215560BD7008EE025 = {
 			isa = PBXGroup;
 			children = (
+				D3351742155612D4008EE025 /* phonegap-index.html */,
+				D335174015560DDE008EE025 /* www */,
 				D33516FE15560BD8008EE025 /* Drive By */,
 				D33516E315560BD8008EE025 /* Frameworks */,
 				D33516E115560BD8008EE025 /* Products */,
@@ -326,6 +332,8 @@
 				D335172915560BD9008EE025 /* Cordova.plist in Resources */,
 				D335173215560BDA008EE025 /* MainViewController.xib in Resources */,
 				D335173615560BDA008EE025 /* verify.sh in Resources */,
+				D335174115560DDE008EE025 /* www in Resources */,
+				D3351743155612D4008EE025 /* phonegap-index.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,10 +423,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv6,
-					"$(ARCHS_STANDARD_32_BIT)",
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -442,10 +447,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv6,
-					"$(ARCHS_STANDARD_32_BIT)",
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -539,6 +541,7 @@
 				D335173B15560BDA008EE025 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

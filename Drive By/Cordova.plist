@@ -21,7 +21,11 @@
 	<key>OpenAllWhitelistURLsInWebView</key>
 	<false/>
 	<key>ExternalHosts</key>
-	<array/>
+	<array>
+		<string>localhost</string>
+		<string>code.jquery.com</string>
+		<string>driveby.olore.net</string>
+	</array>
 	<key>Plugins</key>
 	<dict>
 		<key>Compass</key>
