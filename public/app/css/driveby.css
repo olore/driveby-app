@@ -91,7 +91,7 @@
 }
 
 /* Dark blue */
-.pa, ny {
+.pa, .ny, .ct {
   color: #0B0B61;
   text-shadow: 0 -1px 0 white;
 }
