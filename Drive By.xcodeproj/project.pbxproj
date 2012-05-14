@@ -39,7 +39,6 @@
 		D335173215560BDA008EE025 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D335173115560BDA008EE025 /* MainViewController.xib */; };
 		D335173615560BDA008EE025 /* verify.sh in Resources */ = {isa = PBXBuildFile; fileRef = D335173515560BDA008EE025 /* verify.sh */; };
 		D335174115560DDE008EE025 /* www in Resources */ = {isa = PBXBuildFile; fileRef = D335174015560DDE008EE025 /* www */; };
-		D3351743155612D4008EE025 /* phonegap-index.html in Resources */ = {isa = PBXBuildFile; fileRef = D3351742155612D4008EE025 /* phonegap-index.html */; };
 		D34726C61560998300C0C2A5 /* Default~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = D34726C51560998300C0C2A5 /* Default~ipad.png */; };
 /* End PBXBuildFile section */
 
@@ -82,7 +81,6 @@
 		D335173415560BDA008EE025 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; name = README; path = Plugins/README; sourceTree = "<group>"; };
 		D335173515560BDA008EE025 /* verify.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = verify.sh; sourceTree = "<group>"; };
 		D335174015560DDE008EE025 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
-		D3351742155612D4008EE025 /* phonegap-index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "phonegap-index.html"; path = "../../../ruby/driveby.olore.net/public/app/phonegap-index.html"; sourceTree = "<group>"; };
 		D34726C51560998300C0C2A5 /* Default~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default~ipad.png"; path = "Resources/splash/Default~ipad.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,7 +119,6 @@
 		D33516D215560BD7008EE025 = {
 			isa = PBXGroup;
 			children = (
-				D3351742155612D4008EE025 /* phonegap-index.html */,
 				D335174015560DDE008EE025 /* www */,
 				D33516FE15560BD8008EE025 /* Drive By */,
 				D33516E315560BD8008EE025 /* Frameworks */,
@@ -336,7 +333,6 @@
 				D335173215560BDA008EE025 /* MainViewController.xib in Resources */,
 				D335173615560BDA008EE025 /* verify.sh in Resources */,
 				D335174115560DDE008EE025 /* www in Resources */,
-				D3351743155612D4008EE025 /* phonegap-index.html in Resources */,
 				D34726C61560998300C0C2A5 /* Default~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -452,7 +448,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Robert Land";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -460,6 +456,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2DFFE570-1117-4133-A688-8777F583F170";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
