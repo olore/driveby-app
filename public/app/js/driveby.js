@@ -44,7 +44,11 @@ DriveBy.update_recent_posts = function(func) {
 };
 
 DriveBy.show_retry_error_alert = function() {
-  alert("Error occurred", "Please try again.")
+  if (navigator.onLine) {
+    DriveBy.alert("Error occurred", "Please try again.")
+  } else {
+    DriveBy.alert("No network", "Error: No internet connection.")
+  }
 };
 
 DriveBy.initialize_phonegap = function() {
