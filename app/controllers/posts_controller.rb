@@ -1,8 +1,13 @@
 class PostsController < ApplicationController
 
+  rescue_from StandardError, :with => :unexpected_error
+  rescue_from ActiveRecord::RecordInvalid, :with => :invalid_record
+
+  respond_to :json
+
   def index
     posts = Post.limit(25).order('created_at desc')
-    render :json => posts
+    respond_with posts
   end
 
   def create
@@ -11,10 +16,18 @@ class PostsController < ApplicationController
                   :license_plate  => params[:license_plate], 
                   :comment        => params[:comment])
     render :json => {'success' => true}
+  end
 
-  rescue => e
-    Rails.logger.error("Error creating post: #{e.message}")
-    Rails.logger.error(e.backtrace[0..15].join("\n"))
+  private
+
+  def invalid_record(error)
+    Rails.logger.error("Error creating post: #{error.message}")
+    render :json => error.message, :status => 400
+  end
+
+  def unexpected_error(error)
+    Rails.logger.error("Error creating post: #{error.message}")
+    Rails.logger.error(error.backtrace[0..15].join("\n"))
     render :json => 'Error', :status => 400
   end
 

@@ -31,4 +31,19 @@ class PostTest < ActiveSupport::TestCase
                     :comment => 'you rock')
     end
   end
+
+  test "plates only contain alpha numerics" do
+    hash = { :comment => 'you rock',
+             :state   => 'CT',
+             :creator => 'bobdobalina'}
+
+    bad_plates = %w( abc!23 123_fff rr#rr )
+
+    bad_plates.each do |bad_plate|
+      assert_no_difference 'Post.count' do
+        Post.create( hash.merge(:license_plate => bad_plate))
+      end
+    end
+  end
+
 end
