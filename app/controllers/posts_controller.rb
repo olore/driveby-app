@@ -7,7 +7,7 @@ class PostsController < ApplicationController
 
   def index
     posts = Post.limit(25).order('created_at desc')
-    respond_with posts
+    respond_with fix_for_dreamhost(posts)
   end
 
   def create
@@ -31,4 +31,9 @@ class PostsController < ApplicationController
     render :json => 'Error', :status => 400
   end
 
+  def fix_for_dreamhost(posts)
+    posts.each do |post|
+      post.created_at += 7.minutes
+    end
+  end
 end

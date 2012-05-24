@@ -76,4 +76,12 @@ class PostsControllerTest < ActionController::TestCase
     assert_match /license plate is invalid/i, @response.body
   end
 
+  test "fix for dreamhost server being off by 7 minutes" do
+    post = Post.first
+    get 'index', :format => :json
+    posts = JSON.parse(@response.body)
+    assert_equal post.created_at + 7.minutes, posts.first['created_at']
+  end
+
+
 end
