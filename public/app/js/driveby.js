@@ -38,6 +38,7 @@ DriveBy.update_recent_posts = function(func) {
 
     recent_list.listview('refresh'); /* apply the jqm style */
     $(".timeago").timeago();
+    $(".comment").ellipsis();
 
     if (func) { func(); }
   });
