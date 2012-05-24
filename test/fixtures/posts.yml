@@ -2,7 +2,9 @@ one:
   license_plate: qwerty1
   comment: bad driver!
   creator: abcdefg
+  state: NY
 two:
   license_plate: qwerty2
   comment: nice parking job
   creator: tuvwxyz
+  state: NY

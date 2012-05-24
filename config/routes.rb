@@ -1,5 +1,6 @@
 Driveby::Application.routes.draw do
 
+  match 'posts/my/:user' => 'posts#my'
   resources :posts, :except => [:destroy, :update]
   #match 'posts' => 'posts#index'
 

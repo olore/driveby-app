@@ -26,6 +26,10 @@ class PostsControllerTest < ActionController::TestCase
     end
   end
 
+  test "route for getting posts made by a user" do
+    assert_routing({:path => "posts/my/user", :method => :get}, 
+                  {:controller => "posts", :action => "my", :user => 'user'})
+  end
   test "creating a new post calls Post#create" do
     params = {:creator => 'bob', :state => 'NY', :license_plate => '123abc', :comment => 'woo woo'}
     Post.expects(:create!).with(params)
@@ -83,5 +87,14 @@ class PostsControllerTest < ActionController::TestCase
     assert_equal post.created_at + 7.minutes, posts.first['created_at']
   end
 
+  test "get posts ive created" do
+    post = Post.first
+    post.dup.save!
+    me = post.creator
+
+    get "my", :user => me, :format => :json
+    posts = JSON.parse(@response.body)
+    assert_equal 2, posts.size
+  end
 
 end

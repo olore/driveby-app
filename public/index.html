@@ -43,18 +43,15 @@
 
       //jquery - for working in browser
       $(document).ready(function() {
-        console.log("document.ready called, jquery ready");
         DriveBy.initialize();
       });
 
       //phonegap - for working in app
       function onDeviceReady() {
-        console.log("ondeviceready called, phonegap ready");
         DriveBy.initialize_phonegap();
       }
       
       function onBodyLoad() {		
-        console.log("onBodyLoad called");
         document.addEventListener("deviceready", onDeviceReady, false);
       }
         
@@ -68,7 +65,7 @@
       <div data-role="header" data-position="fixed">
         <h1>Drive By</h1>
 
-        <a id="refresh" href="#" data-role="button" data-icon="refresh" data-iconpos="notext" class="ui-btn-right" style="box-shadow: none; -webkit-box-shadow: none;"> </a>
+        <a id="refresh" href="#" data-role="button" data-icon="refresh" class="ui-btn-right">Refresh</a>
 
       </div><!-- /header -->
 
@@ -101,7 +98,9 @@
       </div><!-- /content -->
 
       <div data-role="footer" data-id="my-footer" data-position="fixed">
+        <!-- <a id="fave_posts" href="#" data-role="button" data-icon="heart" class="ui-btn-left">Faves</a> -->
         <h4>Drive Safely!</h4>
+        <a id="my_posts" href="my.html" data-role="button" data-icon="check" class="ui-btn-right">My</a>
       </div><!-- /footer -->
 
     </div><!-- /page -->

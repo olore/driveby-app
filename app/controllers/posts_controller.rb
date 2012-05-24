@@ -18,6 +18,12 @@ class PostsController < ApplicationController
     render :json => {'success' => true}
   end
 
+  def my
+    user = params[:user]
+    posts = Post.where(:creator => user)
+    respond_with fix_for_dreamhost(posts)
+  end
+
   private
 
   def invalid_record(error)

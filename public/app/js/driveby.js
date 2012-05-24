@@ -24,8 +24,27 @@ Handlebars.registerHelper('toLowerCase', function(value) {
   return new Handlebars.SafeString(value.toLowerCase());
 });
 
+DriveBy.update_my_posts = function(func) {
+  var recent_list = $( '#my_recent_list' );
+  recent_list.empty();
+
+  $.get( DriveBy.host + "/posts/my/" + DriveBy.uuid, function( posts ) {
+    var post_source   = $("#recent_posts_template").html();
+    var post_template = Handlebars.compile(post_source);
+
+    $.each( posts , function(index, post) {
+      recent_list.append(post_template( {'post': post} ));
+    });
+
+    recent_list.listview('refresh'); /* apply the jqm style */
+    $(".timeago").timeago();
+    $(".comment").ellipsis();
+
+    if (func) { func(); }
+  });
+};
 DriveBy.update_recent_posts = function(func) {
-  var recent_list = $( '#recent-list'   );
+  var recent_list = $( '#recent-list' );
   recent_list.empty();
 
   $.get( DriveBy.host + "/posts", function( posts ) {
@@ -60,6 +79,10 @@ DriveBy.initialize_phonegap = function() {
 
 DriveBy.initialize = function() {
   
+  $('#my').live('pageshow', function (event, ui) {
+    DriveBy.update_my_posts();
+  });
+
   /* add license plates to slider */
   $.each( DriveBy.states , function(index, state) {
     $( '.slider' ).append('<div class="item" id ="' + state + '"><a href="#"><img width="120" height="60" src="app/images/' + state.toLowerCase() + '.jpg" /></a></div>');
@@ -122,6 +145,7 @@ DriveBy.initialize = function() {
       $.mobile.hidePageLoadingMsg();
     });
   });
+
 };
 
 DriveBy.save_post = function(params) {
