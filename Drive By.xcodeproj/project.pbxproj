@@ -272,6 +272,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D335173915560BDA008EE025 /* Build configuration list for PBXNativeTarget "Drive By" */;
 			buildPhases = (
+				D3BDE0FA157071BF00C6D7CD /* ShellScript */,
 				D33516D915560BD8008EE025 /* Sources */,
 				D33516DA15560BD8008EE025 /* Frameworks */,
 				D33516DB15560BD8008EE025 /* Resources */,
@@ -352,6 +353,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
 			shellScript = "\n\t\t\t\t\t\t\t\tchmod 755 \"$PROJECT_DIR/$PROJECT_NAME/verify.sh\"\n\t\t\t\t\t\t\t\t\"$PROJECT_DIR/$PROJECT_NAME/verify.sh\"\n\t\t\t\t\t";
+		};
+		D3BDE0FA157071BF00C6D7CD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "rm -rf \"$PROJECT_DIR/www/*\"\nDB=/Users/brian/dev/ruby/driveby.olore.net\ncp -fv $DB/public/index.html \"$PROJECT_DIR/www\"\ncp -fv $DB/public/my.html \"$PROJECT_DIR/www\"\ncp -frv $DB/public/app \"$PROJECT_DIR/www\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -440,6 +454,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = NO;
 			};
 			name = Debug;
 		};
@@ -448,7 +463,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Robert Land";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -456,7 +471,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2DFFE570-1117-4133-A688-8777F583F170";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -488,6 +503,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = NO;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
