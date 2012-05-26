@@ -29,20 +29,28 @@ DriveBy.update_my_posts = function(func) {
   recent_list.empty();
 
   $.get( DriveBy.host + "/posts/my/" + DriveBy.uuid, function( posts ) {
-    var post_source   = $("#recent_posts_template").html();
-    var post_template = Handlebars.compile(post_source);
 
-    $.each( posts , function(index, post) {
-      recent_list.append(post_template( {'post': post} ));
-    });
+    if (posts.length != 0) {
+      $.each( posts , function(index, post) {
+        recent_list.append(DriveBy.post_template( {'post': post} ));
+      });
 
-    recent_list.listview('refresh'); /* apply the jqm style */
-    $(".timeago").timeago();
-    $(".comment").ellipsis();
+      recent_list.listview('refresh'); /* apply the jqm style */
+      $(".timeago").timeago();
+      $(".comment").ellipsis();
+    } else {
+      var post = { state: 'CT', 
+                   license_plate: 'TOO BAD', 
+                   created_at: 'Never posted :(',   
+                   comment: 'You have not posted any license plates yet! What are you waiting for?' }
+      recent_list.append(DriveBy.post_template( {'post': post} ));
+      recent_list.listview('refresh'); /* apply the jqm style */
+    }
 
     if (func) { func(); }
   });
 };
+
 DriveBy.update_recent_posts = function(func) {
   var recent_list = $( '#recent-list' );
   recent_list.empty();
@@ -65,6 +73,7 @@ DriveBy.update_recent_posts = function(func) {
 
 DriveBy.show_retry_error_alert = function() {
   if (navigator.onLine) {
+    //FIXME: Display to user what actually went wrong (when it makes sense)
     DriveBy.alert("Error occurred", "Please try again.")
   } else {
     DriveBy.alert("No network", "Error: No internet connection.")
@@ -75,23 +84,29 @@ DriveBy.initialize_phonegap = function() {
   DriveBy.uuid    = device.uuid;
   DriveBy.device  = device.name;
   DriveBy.version = device.version;
+
+  DriveBy.initialize();
 };
 
 DriveBy.initialize = function() {
-  
+
+  var post_source   = $("#recent_posts_template").html();
+  DriveBy.post_template = Handlebars.compile(post_source);
+
   $('#my').live('pageshow', function (event, ui) {
     DriveBy.update_my_posts();
   });
 
   /* add license plates to slider */
   $.each( DriveBy.states , function(index, state) {
-    $( '.slider' ).append('<div class="item" id ="' + state + '"><a href="#"><img width="120" height="60" src="app/images/' + state.toLowerCase() + '.jpg" /></a></div>');
+    $( '.slider' ).append('<div class="item" id ="' + state + '"><a href="#"><img class="lazy" width="120" height="60" data-original="app/images/' + state.toLowerCase() + '.jpg" /></a></div>');
   });
 
-  $('.iosSlider').iosSlider({ 
-                              desktopClickDrag: true,
-                              startAtSlide: 30
-                            });
+  $('.iosSlider').iosSlider({ desktopClickDrag: true,
+                              startAtSlide: 30 });
+
+  $("img.lazy").lazyload({ container: $('.iosSlider'),
+                           threshold: 600 });
 
   /* log any ajax errors */
   $(document).ajaxError(function(e, jqxhr, settings, exception) {
@@ -101,16 +116,18 @@ DriveBy.initialize = function() {
   });
 
   /* listen to clicking to states */
-  var states = $( '.item' )
-  states.bind("click", function(){
-    /* reset all states to default */
-    states.css('background-color', '#F9F9F9');
-    states.attr('data-selected', 'false');
+  (function() {
+    var states = $( '.item' )
+    states.bind("click", function(){
+      /* reset all states to default */
+      states.css('background-color', '#F9F9F9');
+      states.attr('data-selected', 'false');
 
-    /* select the one that was clicked */
-    $( this ).css('background-color', 'cyan');
-    $( this ).attr('data-selected', 'true');
-  });
+      /* select the one that was clicked */
+      $( this ).css('background-color', 'cyan');
+      $( this ).attr('data-selected', 'true');
+    });
+  })();
 
   /* listen to new post being submitted */
   $( '#new_post_submit' ).click( function( e ) {
@@ -133,8 +150,6 @@ DriveBy.initialize = function() {
 
   });                    
 
-  DriveBy.update_recent_posts();
-
   /* listen to refresh click */
   $( '#refresh' ).click(function() {
     $.mobile.loadingMessageTextVisible = true;
@@ -146,7 +161,8 @@ DriveBy.initialize = function() {
     });
   });
 
-};
+  DriveBy.update_recent_posts();
+}; /* end initialize */
 
 DriveBy.save_post = function(params) {
 

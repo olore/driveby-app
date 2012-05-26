@@ -37,17 +37,22 @@
     <script type="text/javascript" charset="utf-8" src="app/js/jquery.timeago.js"></script>
     <script type="text/javascript" charset="utf-8" src="app/js/jquery.ios-slider-0.9.1.js"></script>
     <script type="text/javascript" charset="utf-8" src="app/js/jquery.autoellipsis-1.0.3.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="app/js/jquery.lazyload.js"></script>
     <script type="text/javascript" charset="utf-8" src="app/js/driveby.js"></script>
 
     <script type="text/javascript">
 
       //jquery - for working in browser
       $(document).ready(function() {
-        DriveBy.initialize();
+        if (!navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/)) {
+          console.log("we are in a browser");
+          DriveBy.initialize(); //we are in a browser
+        }
       });
 
       //phonegap - for working in app
       function onDeviceReady() {
+        console.log("we are an app");
         DriveBy.initialize_phonegap();
       }
       
