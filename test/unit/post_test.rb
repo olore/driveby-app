@@ -46,4 +46,15 @@ class PostTest < ActiveSupport::TestCase
     end
   end
 
+  test "plate accepts spaces" do
+    hash = { :comment => 'you rock',
+             :state   => 'CT',
+             :creator => 'bobdobalina'}
+
+    assert_nothing_raised do
+      Post.create!( hash.merge(:license_plate => "hi bye"))
+    end
+  end
+
+
 end
