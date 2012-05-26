@@ -21,7 +21,7 @@
         var settings = {
             threshold       : 0,
             failure_limit   : 0,
-            event           : "scroll",
+            event           : "scrollstart",
             effect          : "show",
             container       : window,
             data_attribute  : "original",
@@ -72,7 +72,7 @@
                       settings.container === window) ? $window : $(settings.container);
 
         /* Fire one scroll event per scroll. Not one scroll event per image. */
-        if (0 === settings.event.indexOf("scroll")) {
+        if (0 === settings.event.indexOf("scrollstart")) {
             $container.bind(settings.event, function(event) {
                 return update();
             });
@@ -116,7 +116,7 @@
 
             /* When wanted event is triggered load original image */
             /* by triggering appear.                              */
-            if (0 !== settings.event.indexOf("scroll")) {
+            if (0 !== settings.event.indexOf("scrollstart")) {
                 $self.bind(settings.event, function(event) {
                     if (!self.loaded) {
                         $self.trigger("appear");
