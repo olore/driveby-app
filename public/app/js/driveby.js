@@ -1,3 +1,5 @@
+/*jslint browser:true, devel:true, jquery:true*/
+/*global DriveBy:true, Handlebars:true, device:true */
 DriveBy = {};
 
 DriveBy.host = "http://driveby.olore.net";
@@ -20,7 +22,7 @@ DriveBy.states = [
  'SD', 'TN', 'TX', 'UT', 'VA', 'VT', 'WA', 'WI', 'WV', 'WY'];
 
 Handlebars.registerHelper('toLowerCase', function(value) {
-  if (value == null) return 'nj';
+  if (value == null) { return 'nj'; }
   return new Handlebars.SafeString(value.toLowerCase());
 });
 
@@ -30,7 +32,7 @@ DriveBy.update_my_posts = function(func) {
 
   $.get( DriveBy.host + "/posts/my/" + DriveBy.uuid, function( posts ) {
 
-    if (posts.length != 0) {
+    if (posts.length !== 0) {
       $.each( posts , function(index, post) {
         recent_list.append(DriveBy.post_template( {'post': post} ));
       });
@@ -42,7 +44,7 @@ DriveBy.update_my_posts = function(func) {
       var post = { state: 'CT', 
                    license_plate: 'TOO BAD', 
                    created_at: 'Never posted :(',   
-                   comment: 'You have not posted any license plates yet! What are you waiting for?' }
+                   comment: 'You have not posted any license plates yet! What are you waiting for?' };
       recent_list.append(DriveBy.post_template( {'post': post} ));
       recent_list.listview('refresh'); /* apply the jqm style */
     }
@@ -74,9 +76,9 @@ DriveBy.update_recent_posts = function(func) {
 DriveBy.show_retry_error_alert = function() {
   if (navigator.onLine) {
     //FIXME: Display to user what actually went wrong (when it makes sense)
-    DriveBy.alert("Error occurred", "Please try again.")
+    DriveBy.alert("Error occurred", "Please try again.");
   } else {
-    DriveBy.alert("No network", "Error: No internet connection.")
+    DriveBy.alert("No network", "Error: No internet connection.");
   }
 };
 
@@ -117,7 +119,7 @@ DriveBy.initialize = function() {
 
   /* listen to clicking to states */
   (function() {
-    var states = $( '.item' )
+    var states = $( '.item' );
     states.bind("click", function(){
       /* reset all states to default */
       states.css('background-color', '#F9F9F9');
@@ -172,7 +174,7 @@ DriveBy.save_post = function(params) {
 
     $.post( DriveBy.host + "/posts", params, function( data, textStatus, jqXHR ){
       $.mobile.hidePageLoadingMsg();
-      if (data['success'] == true) {
+      if (data['success'] === true) {
         DriveBy.successfulPost();
       } else {
         DriveBy.show_retry_error_alert();

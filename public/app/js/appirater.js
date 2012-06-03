@@ -1,3 +1,4 @@
+/*global AppiraterData:true */
 (function( Appirater, $, undefined ) {
   
   /* private */
