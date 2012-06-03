@@ -37,13 +37,13 @@
     }
 
     // check if the app has been used enough
-    var use_count = parseInt(AppiraterData.get('use_count'));
+    var use_count = parseInt(AppiraterData.get('use_count'), 10);
     if (use_count <= APPIRATER_USES_UNTIL_PROMPT) {
       return false;
     }
 
     // check if the user has done enough      significant events
-    var sig_event_count = parseInt(AppiraterData.get('significant_event_count'));
+    var sig_event_count = parseInt(AppiraterData.get('significant_event_count'), 10);
     if (sig_event_count <= APPIRATER_SIG_EVENTS_UNTIL_PROMPT) {
       return false;
     }
