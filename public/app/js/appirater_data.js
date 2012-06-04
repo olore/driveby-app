@@ -11,7 +11,7 @@
   };
 
   AppiraterData.increment = function(key) {
-    AppiraterData.set(key, parseInt(AppiraterData.get(key) + 1, 10));
+    AppiraterData.set(key, AppiraterData.get(key) + 1);
     return AppiraterData.get(key);
   };
 
