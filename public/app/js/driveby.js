@@ -3,7 +3,7 @@
 
 (function( DriveBy, $, undefined) {
 
-  DriveBy.host = "http://driveby.olore.net";
+  DriveBy.host = "http://drivebyapp.com";
   //DriveBy.host = "http://localhost:3000";
 
   /* Wrapper to support browsers & phonegap */
