@@ -3,6 +3,18 @@
   src: url('motorway.ttf'); /* From: http://www.dafont.com/motorway.font */
 }
 
+* {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+
+/*
+  THIS IS SPOSTA MAKE TRANSITIONS FASTER
+  SEEMS TO REQUIRE CHANGE TO .plate_text (remove top & right styles)
+  transform: translate3d(0,0,0);
+  -webkit-transform: translate3d(0,0,0);
+*/
+}
+
 /* iOS slider */
 .iosSlider {
   width: 100%;

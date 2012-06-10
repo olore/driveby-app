@@ -121,7 +121,7 @@
     /* listen to clicking to states */
     (function() {
       var states = $( '.item' );
-      states.bind("click", function(){
+      states.bind( "tap", function(){
         /* reset all states to default */
         states.css('background-color', '#F9F9F9');
         states.attr('data-selected', 'false');
@@ -133,7 +133,7 @@
     })();
 
     /* listen to new post being submitted */
-    $( '#new_post_submit' ).click( function( e ) {
+    $( '#new_post_submit' ).bind( 'tap', function( e ) {
       e.preventDefault();
       e.stopPropagation();
 
@@ -154,7 +154,7 @@
     });                    
 
     /* listen to refresh click */
-    $( '#refresh' ).click(function() {
+    $( '#refresh' ).bind( 'tap', function() {
       $.mobile.loadingMessageTextVisible = true;
       $.mobile.loadingMessage = "Refreshing, please wait...";
       $.mobile.showPageLoadingMsg();
