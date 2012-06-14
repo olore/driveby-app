@@ -3,17 +3,19 @@
   src: url('motorway.ttf'); /* From: http://www.dafont.com/motorway.font */
 }
 
+/*
 * {
+  THIS IS SPOSTA MAKE IT FEEL MORE LIKE A NATIVE APP
+  BUT IT MAKES INPUT BOXES NO LONGER ALLOW INPUT!
   -webkit-touch-callout: none;
   -webkit-user-select: none;
 
-/*
-  THIS IS SPOSTA MAKE TRANSITIONS FASTER
+  THIS IS SPOSTA MAKE TRANSITIONS FASTER - DOES IT?
   SEEMS TO REQUIRE CHANGE TO .plate_text (remove top & right styles)
   transform: translate3d(0,0,0);
   -webkit-transform: translate3d(0,0,0);
-*/
 }
+*/
 
 /* iOS slider */
 .iosSlider {
