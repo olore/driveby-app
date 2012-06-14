@@ -27,5 +27,5 @@ Thanks to the following open source projects
 - [jquery.timeago](http://timeago.yarp.com/) - "about one hour ago" instead of ugly time
 - [jquery.ios-slider](http://iosscripts.com/iosslider-jquery-horizontal-slider-for-iphone-ipad-safari/) - horizontal slider for license plates
 - [jquery.lazyload](http://www.appelsiini.net/projects/lazyload) - don't load all 51 plate images on page load, wait til they get 'close' to being on screen
-
-Also thanks to http://blankplates.com for providing the license plate images.
+    
+Also thanks to http://blankplates.com for providing the license plate images and http://www.dafont.com/motorway.font for a cool font
