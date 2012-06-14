@@ -88,11 +88,10 @@
     DriveBy.device  = device.name;
     DriveBy.version = device.version;
     DriveBy.initialize();
+    Appirater.app_launched();
   };
 
   DriveBy.initialize = function() {
-
-    Appirater.app_launched();
     var post_source   = $("#recent_posts_template").html();
     DriveBy.post_template = Handlebars.compile(post_source);
 

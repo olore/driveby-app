@@ -3,14 +3,17 @@
 (function( Appirater, $, undefined ) {
   
   /* private */
-  var APP_ID                  = 123454321;    //your app id 
+  var APP_ID                  = '527034924';  //your app id 
   var VERSION                 = '1.1';        //your app version # 
   var DAYS_UNTIL_PROMPT       = 30;           //days 30
   var USES_UNTIL_PROMPT       = 15;           //count 15
   var SIG_EVENTS_UNTIL_PROMPT = -1;           //count
   var TIME_BEFORE_REMINDING   = 1;            //days
+  var DEBUG                   = true;         //debugging - force showing of dialog for testing
 
-  var templateReviewURL = "itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id" + APP_ID;
+  //var app_url = "http://itunes.apple.com/us/app/drive-by/id" + APP_ID + "?mt=8&uo=4";
+  //var review_url = "https://userpub.itunes.apple.com/WebObjects/MZUserPublishing.woa/wa/addUserReview?id=" + APP_ID + "&type=Purple+Software"
+  var review_url = "itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=" + APP_ID;
 
   /* private */
   connected_to_network = function() {
@@ -23,11 +26,9 @@
 
   show_rating_alert = function() {
     $('#appirater_dialog').live('pageinit', function() {
-      $('a[data-icon=delete]').hide(); //hide the close button
 
-      $('a#rate').live('click', function() {
-        $.mobile.changePage(templateReviewURL);
-      });
+      $('#rate').attr('href', review_url); //set href for rating in iTunes
+      $('a[data-icon=delete]').hide(); //hide the close button
 
       $('a#remind').live('click', function() {
         AppiraterData.set('reminder_request_date', Date.now());
@@ -40,11 +41,12 @@
       });
 
     });
-    $.mobile.changePage('appirater_dialog.html', {transition: 'pop', role: 'dialog'});   
 
+    $.mobile.changePage('appirater_dialog.html', {transition: 'pop', role: 'dialog'});   
   };
 
   rating_conditions_have_been_met = function() {
+    if (DEBUG) { return true };
     var first_launch_date = AppiraterData.get('first_launch_date');
     var time_since_first_launch = seconds_since(first_launch_date );
     var time_until_rate = 60 * 60 * 24 * DAYS_UNTIL_PROMPT;
