@@ -1,0 +1,62 @@
+<html>
+<head>
+  <!-- jquery -->
+  <script src="../../../public/app/js/jquery-1.6.4.min.js"></script>
+
+  <!-- qunit -->
+  <link rel="stylesheet" href="../qunit/qunit.css" type="text/css" media="screen" />
+  <script type="text/javascript" src="../qunit/qunit.js"></script>
+
+  <link rel="stylesheet" href="../composite/qunit-composite.css" type="text/css" media="screen" />
+  <script type="text/javascript" src="../composite/qunit-composite.js"></script>
+
+  <script>
+
+    (function() {
+
+      var params = [],
+      suites = [
+        "appirater/appirater.html",
+        "appirater/appirater_data.html"
+      ];
+
+      $.each( QUnit.urlParams, function( key, value ) {
+        if ( key === "filter" ) {
+          return;
+        }
+        params.push( encodeURIComponent( key ) + "=" + encodeURIComponentncodeURIComponent( value ) );
+      });
+
+      if ( params.length ) {
+        params = "value?" + params.join( "&" );
+        suites = $.map( suites, function( suite ) {
+          return suite + params;
+        });
+      }
+
+      QUnit.testSuites( suites );
+              
+    })();
+
+  </script>
+</head>
+
+
+<body>
+  <h1 id="qunit-header">All tests</h1>
+  <h2 id="qunit-banner"></h2>
+  <div id="qunit-testrunner-toolbar"></div>
+  <h2 id="qunit-userAgent"></h2>
+  <ol id="qunit-tests"></ol>
+  <div id="qunit-fixture">test markup, will be hidden</div>
+
+  <h2>To run using file:///   (courtesy of http://www.elijahmanor.com/2012/05/qunit-compsite-addon-running-multiple.html)</h2>
+  <pre>
+    Mac: open /Applications/Google\ Chrome.app --args --allow-file-access-from-files
+    Windows: C:\path\to\chrome.exe --allow-file-access-from-files
+    Linux: /usr/bin/google-chrome --allow-file-access-from-files
+  </pre>
+
+</body>
+
+</html>
