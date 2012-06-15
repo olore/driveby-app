@@ -78,7 +78,6 @@
 		D335172E15560BDA008EE025 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = Classes/MainViewController.h; sourceTree = "<group>"; };
 		D335172F15560BDA008EE025 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = Classes/MainViewController.m; sourceTree = "<group>"; };
 		D335173115560BDA008EE025 /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainViewController.xib; path = Classes/MainViewController.xib; sourceTree = "<group>"; };
-		D335173415560BDA008EE025 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; name = README; path = Plugins/README; sourceTree = "<group>"; };
 		D335173515560BDA008EE025 /* verify.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = verify.sh; sourceTree = "<group>"; };
 		D335174015560DDE008EE025 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
 		D34726C51560998300C0C2A5 /* Default~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default~ipad.png"; path = "Resources/splash/Default~ipad.png"; sourceTree = "<group>"; };
@@ -260,7 +259,6 @@
 		D335173315560BDA008EE025 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
-				D335173415560BDA008EE025 /* README */,
 			);
 			name = Plugins;
 			sourceTree = "<group>";
@@ -272,7 +270,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D335173915560BDA008EE025 /* Build configuration list for PBXNativeTarget "Drive By" */;
 			buildPhases = (
-				D3BDE0FA157071BF00C6D7CD /* ShellScript */,
+				D3BDE0FA157071BF00C6D7CD /* Copy files from rails app */,
 				D33516D915560BD8008EE025 /* Sources */,
 				D33516DA15560BD8008EE025 /* Frameworks */,
 				D33516DB15560BD8008EE025 /* Resources */,
@@ -354,18 +352,19 @@
 			shellPath = /bin/bash;
 			shellScript = "\n\t\t\t\t\t\t\t\tchmod 755 \"$PROJECT_DIR/$PROJECT_NAME/verify.sh\"\n\t\t\t\t\t\t\t\t\"$PROJECT_DIR/$PROJECT_NAME/verify.sh\"\n\t\t\t\t\t";
 		};
-		D3BDE0FA157071BF00C6D7CD /* ShellScript */ = {
+		D3BDE0FA157071BF00C6D7CD /* Copy files from rails app */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Copy files from rails app";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "rm -rf \"$PROJECT_DIR/www/*\"\nDB=/Users/brian/dev/ruby/driveby.olore.net\ncp -fv $DB/public/index.html \"$PROJECT_DIR/www\"\ncp -fv $DB/public/my.html \"$PROJECT_DIR/www\"\ncp -frv $DB/public/app \"$PROJECT_DIR/www\"\n";
+			shellScript = "rm -rf \"$PROJECT_DIR/www/*\"\nDB=/Users/brian/dev/ruby/driveby.olore.net\ncp -fv $DB/public/index.html \"$PROJECT_DIR/www\"\ncp -fv $DB/public/my.html \"$PROJECT_DIR/www\"\ncp -fv $DB/public/appirater_dialog.html \"$PROJECT_DIR/www\"\ncp -frv $DB/public/app \"$PROJECT_DIR/www\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

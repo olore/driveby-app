@@ -22,9 +22,9 @@
 	<false/>
 	<key>ExternalHosts</key>
 	<array>
-		<string>localhost</string>
-		<string>code.jquery.com</string>
+		<string>*</string>
 		<string>driveby.olore.net</string>
+		<string>drivebyapp.com</string>
 	</array>
 	<key>Plugins</key>
 	<dict>
