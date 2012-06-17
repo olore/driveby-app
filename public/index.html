@@ -19,6 +19,36 @@
     <script type="text/javascript" charset="utf-8" src="app/js/libraries/cordova-1.8.1.js"></script>
     <script type="text/javascript" charset="utf-8" src="app/js/libraries/jquery-1.7.2.min.js"></script>
 
+    <script type="text/javascript">
+      //listen for mobileinit before loading jqm 
+      //see: http://jquerymobile.com/test/docs/api/globalconfig.html
+      $(document).bind("mobileinit", function(){
+        $.mobile.touchOverflowEnabled = true;
+        $.mobile.defaultPageTransition = "slide";
+        $.support.cors = true;
+        $.mobile.allowCrossDomainPages = true;
+      });
+    
+      //jquery - for working in browser
+      $(document).ready(function() {
+        if (!navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/)) {
+          console.log("we are in a browser");
+          DriveBy.initialize(); //we are in a browser
+        }
+      });
+
+      //phonegap - for working in app
+      function onDeviceReady() {
+        console.log("we are an app");
+        DriveBy.initialize_phonegap();
+      }
+      
+      function onBodyLoad() {		
+        document.addEventListener("deviceready", onDeviceReady, false);
+      }
+        
+    </script>
+
   </head>
 
   <body onload="onBodyLoad()">
@@ -93,48 +123,17 @@
       </li>
     </script>
 
-
+    <script type="text/javascript" charset="utf-8" src="app/js/libraries/jquery.animate-enhanced.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="app/js/libraries/jquery.mobile-1.1.0.min.js"></script>
-
     <script type="text/javascript" charset="utf-8" src="app/js/libraries/handlebars-1.0.0.beta.4.js"></script>
     <script type="text/javascript" charset="utf-8" src="app/js/libraries/jquery.timeago.js"></script>
     <script type="text/javascript" charset="utf-8" src="app/js/libraries/jquery.ios-slider-0.9.1.js"></script>
     <script type="text/javascript" charset="utf-8" src="app/js/libraries/jquery.autoellipsis-1.0.3.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="app/js/libraries/jquery.lazyload.js"></script>
+
     <script type="text/javascript" charset="utf-8" src="app/js/appirater_data.js"></script>
     <script type="text/javascript" charset="utf-8" src="app/js/appirater.js"></script>
     <script type="text/javascript" charset="utf-8" src="app/js/driveby.js"></script>
-
-    <script type="text/javascript">
-
-      //listen for mobileinit before loading jqm 
-      //see: http://jquerymobile.com/test/docs/api/globalconfig.html
-      $(document).bind("mobileinit", function(){
-        $.mobile.touchOverflowEnabled = true;
-        $.mobile.defaultPageTransition = "slide";
-        $.support.cors = true;
-        $.mobile.allowCrossDomainPages = true;
-      });
-    
-      //jquery - for working in browser
-      $(document).ready(function() {
-        if (!navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry)/)) {
-          console.log("we are in a browser");
-          DriveBy.initialize(); //we are in a browser
-        }
-      });
-
-      //phonegap - for working in app
-      function onDeviceReady() {
-        console.log("we are an app");
-        DriveBy.initialize_phonegap();
-      }
-      
-      function onBodyLoad() {		
-        document.addEventListener("deviceready", onDeviceReady, false);
-      }
-        
-    </script>
 
 
   </body>

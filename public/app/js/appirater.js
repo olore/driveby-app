@@ -9,7 +9,7 @@
   var USES_UNTIL_PROMPT       = 15;           //count 15
   var SIG_EVENTS_UNTIL_PROMPT = -1;           //count
   var TIME_BEFORE_REMINDING   = 1;            //days
-  var DEBUG                   = true;         //debugging - force showing of dialog for testing
+  var DEBUG                   = false;         //debugging - force showing of dialog for testing
 
   //var app_url = "http://itunes.apple.com/us/app/drive-by/id" + APP_ID + "?mt=8&uo=4";
   //var review_url = "https://userpub.itunes.apple.com/WebObjects/MZUserPublishing.woa/wa/addUserReview?id=" + APP_ID + "&type=Purple+Software"
