@@ -6,6 +6,7 @@ v1.2
 - Added Appirater port for asking user to rate the app in iTunes
 - Faster response to touch by binding to "touch" instead of "click"
 - Support other device orientations
+- Removed broken "My", as uuid's can't be used reliably
 - Updated to cordova v1.8.1
 
 v1.1 - 2012.06.05
