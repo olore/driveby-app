@@ -83,42 +83,26 @@
     }
   };
 
-  DriveBy.initialize_phonegap = function() {
-    DriveBy.uuid    = device.uuid;
-    DriveBy.device  = device.name;
-    DriveBy.version = device.version;
-    DriveBy.initialize();
-    Appirater.app_launched();
-  };
+  DriveBy.add_post_page = function() {
 
-  DriveBy.initialize = function() {
-    var post_source   = $("#recent_posts_template").html();
-    DriveBy.post_template = Handlebars.compile(post_source);
-
-    $('#my').live('pageshow', function (event, ui) {
-      DriveBy.update_my_posts();
-    });
-
+console.log("add post page");
     /* add license plates to slider */
     $.each( DriveBy.states , function(index, state) {
       $( '.slider' ).append('<div class="item" id ="' + state + '"><a href="#"><img class="lazy" width="120" height="60" data-original="app/images/' + state.toLowerCase() + '.jpg" /></a></div>');
     });
 
+console.log("slider stuff done");
     $('.iosSlider').iosSlider({ desktopClickDrag: true,
                                 startAtSlide: 30 });
+
+console.log("lazy load start");
 
     $("img.lazy").lazyload({ container: $('.iosSlider'),
                              threshold: 600 });
 
-    /* log any ajax errors */
-    $(document).ajaxError(function(e, jqxhr, settings, exception) {
-      $.mobile.hidePageLoadingMsg();
-      DriveBy.show_retry_error_alert();
-      console.log( "AJAX error: " + e.message + "  ::  " + exception);
-    });
-
+console.log("lazy load done");
     /* listen to clicking to states */
-    (function() {
+    //(function() {
       var states = $( '.item' );
       states.bind( "tap", function(){
         /* reset all states to default */
@@ -129,7 +113,7 @@
         $( this ).css('background-color', 'cyan');
         $( this ).attr('data-selected', 'true');
       });
-    })();
+    //})();
 
     /* listen to new post being submitted */
     $( '#new_post_submit' ).bind( 'tap', function( e ) {
@@ -152,6 +136,46 @@
 
     });                    
 
+  };
+
+  DriveBy.recent_posts_page = function() {
+    DriveBy.update_recent_posts();
+  };
+
+  DriveBy.initialize_phonegap = function() {
+    console.log("intialize_phonegap");
+    DriveBy.uuid    = device.uuid;
+    DriveBy.device  = device.name;
+    DriveBy.version = device.version;
+    DriveBy.initialize();
+    Appirater.app_launched();
+  };
+
+  DriveBy.initialize = function() {
+
+    $('#recent').live('pageshow', function() {
+      console.log('pageshow for recent');
+      DriveBy.recent_posts_page();
+    });
+
+    $('#add_post').live('pageshow', function() {
+      console.log('pageshow for add_post');
+      DriveBy.add_post_page();
+    });
+
+
+    $('#my').live('pageshow', function (event, ui) {
+      DriveBy.update_my_posts();
+    });
+
+
+    /* log any ajax errors */
+    $(document).ajaxError(function(e, jqxhr, settings, exception) {
+      $.mobile.hidePageLoadingMsg();
+      DriveBy.show_retry_error_alert();
+      console.log( "AJAX error: " + e.message + "  ::  " + exception);
+    });
+
     /* listen to refresh click */
     $( '#refresh' ).bind( 'tap', function() {
       $.mobile.loadingMessageTextVisible = true;
@@ -163,7 +187,6 @@
       });
     });
 
-    DriveBy.update_recent_posts();
   }; /* end initialize */
 
   DriveBy.save_post = function(params) {

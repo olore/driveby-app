@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Drive By</title>
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta charset="utf-8">
+
+
+  </head>
+
+  <body>
+    <div data-role="page" id="add_post">
+
+      <div data-role="header" data-position="fixed">
+        <a id="refresh" data-rel="back" href="#" data-role="button" data-icon="back" class="ui-btn-left">Back</a>
+        <h1>New Drive By</h1>
+      </div><!-- /header -->
+
+      <div data-role="content">
+        <div class="content-primary">
+
+<!--
+          <form id="new_post" data-ajax="false">
+-->
+            <label for="state">Choose a state:</label>
+      
+            <div class="iosSlider">
+              <div class="slider"> </div>
+            </div>
+
+            <label for="license_plate">License Plate:</label>
+            <input type="text" name="license_plate" id="license_plate" value="" maxlength="8" autocorrect="off" required pattern="[0-9a-zA-Z\ ]{1,8}"/>
+
+            <label for="comment">Comment:</label>
+            <textarea name="comment" id="comment" required></textarea>
+
+            <input id="new_post_submit" type="submit" value="Submit" />
+<!--
+          </form>
+-->
+
+        </div><!-- /content-primary -->
+      </div><!-- /content -->
+
+
+    </div><!-- /page -->
+  
+  </body>
+</html>
