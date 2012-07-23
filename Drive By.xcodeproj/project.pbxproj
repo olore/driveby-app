@@ -364,7 +364,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "rm -rf \"$PROJECT_DIR/www/*\"\nDB=/Users/brian/dev/ruby/driveby.olore.net\ncp -fv $DB/public/index.html \"$PROJECT_DIR/www\"\ncp -fv $DB/public/my.html \"$PROJECT_DIR/www\"\ncp -fv $DB/public/appirater_dialog.html \"$PROJECT_DIR/www\"\ncp -frv $DB/public/app \"$PROJECT_DIR/www\"\n";
+			shellScript = "rm -rf \"$PROJECT_DIR/www\"\nmkdir \"$PROJECT_DIR/www\"\nRAILS_APP=/Users/brian/dev/ruby/driveby-rails\ncp -fv $RAILS_APP/public/index.html \"$PROJECT_DIR/www\"\ncp -fv $RAILS_APP/public/my.html \"$PROJECT_DIR/www\"\ncp -fv $RAILS_APP/public/appirater_dialog.html \"$PROJECT_DIR/www\"\ncp -frv $RAILS_APP/public/app \"$PROJECT_DIR/www\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
