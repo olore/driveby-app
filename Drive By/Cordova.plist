@@ -7,7 +7,7 @@
 	<key>TopActivityIndicator</key>
 	<string>gray</string>
 	<key>EnableLocation</key>
-	<false/>
+	<true/>
 	<key>EnableViewportScale</key>
 	<false/>
 	<key>AutoHideSplashScreen</key>
@@ -23,8 +23,6 @@
 	<key>ExternalHosts</key>
 	<array>
 		<string>*</string>
-		<string>driveby.olore.net</string>
-		<string>drivebyapp.com</string>
 	</array>
 	<key>Plugins</key>
 	<dict>
